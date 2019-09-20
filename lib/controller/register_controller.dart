@@ -13,7 +13,7 @@ class RegisterController extends ResourceController {
 
     if (user.username == null || user.password == null) {
       return Response.badRequest(
-          body: {"error": "user and password required"});
+          body: {"error": "username and password required"});
     }
 
     user

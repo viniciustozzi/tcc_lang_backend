@@ -1,3 +1,7 @@
+import 'dart:core';
+
+import 'package:backend/model/word_section.dart';
+
 import '../backend.dart';
 
 class Text extends ManagedObject<_Text> implements _Text {}
@@ -7,8 +11,7 @@ class _Text {
   int id;
 
   @Column(unique: true)
-  String name;
+  String title;
 
-  @Column(unique: false)
-  String value;
+  ManagedSet<WordSection> words;
 }

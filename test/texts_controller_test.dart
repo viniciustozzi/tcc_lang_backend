@@ -7,7 +7,7 @@ void main() {
 
   test("GET /heroes returns 200 OK", () async {
     final query = Query<Text>(harness.application.channel.context)
-      ..values.name = 'Bob';
+      ..values.title = 'Bob';
 
     await query.insert();
 
@@ -17,7 +17,7 @@ void main() {
           hasLength(greaterThan(0)),
           everyElement({
             "id": greaterThan(0),
-            "name": isString,
+            "title": isString,
           })
         ]));
   });
@@ -26,9 +26,8 @@ void main() {
     final response =
         await harness.agent.post("/heroes", body: {"name": "Fred"});
 
-    final badResponse = await harness.agent.post("/heroes", body: {
-      "name": "Fred"
-    });
+    final badResponse =
+        await harness.agent.post("/heroes", body: {"name": "Fred"});
 
     expectResponse(badResponse, 409);
 

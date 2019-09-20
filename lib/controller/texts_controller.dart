@@ -9,10 +9,10 @@ class TextsController extends ResourceController {
   final ManagedContext context;
 
   @Operation.get()
-  Future<Response> getTexts({@Bind.query('name') String name}) async {
+  Future<Response> getTexts({@Bind.query('title') String title}) async {
     final query = Query<Text>(context);
-    if (name != null) {
-      query.where((h) => h.name).contains(name, caseSensitive: false);
+    if (title != null) {
+      query.where((h) => h.title).contains(title, caseSensitive: false);
     }
 
     final texts = await query.fetch();
@@ -33,12 +33,11 @@ class TextsController extends ResourceController {
   }
 
   @Operation.post()
-  Future<Response> createText(@Bind.body(ignore: ["id"]) Text inputHero) async {
-    final query = Query<Text>(context)
-      ..values = inputHero;
+  Future<Response> createText(@Bind.body(ignore: ["id"]) Text text) async {
+    final query = Query<Text>(context)..values = text;
 
-    final insertedHero = await query.insert();
+    final insertedText = await query.insert();
 
-    return Response.ok(insertedHero);
+    return Response.ok(insertedText);
   }
 }
