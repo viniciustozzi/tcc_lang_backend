@@ -1,6 +1,0 @@
-database:
-  username: tccmaster
-  password: masterkey
-  host: localhost
-  port: 5432
-  databaseName: tccdb

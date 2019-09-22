@@ -2,15 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6d503c8-0c52-4701-b936-93bab4ef0d8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/model/word_section.dart" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Business/AuthBusiness.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/AuthController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/RegisterController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/TccDbContext.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/Text.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/User.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DB/WordSection.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controller/register_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controller/register_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/controller/texts_controller.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/controller/texts_controller.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/model/text.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/model/text.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/texts_controller_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/texts_controller_test.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/analysis_options.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/main.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.src.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/backend.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/channel.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/controller/register_controller.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/controller/texts_controller.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/text.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/user.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/model/word_section.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/00000001_initial.migration.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/00000002_unnamed.migration.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/00000003_unnamed.migration.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/00000004_unnamed.migration.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/00000005_unnamed.migration.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/00000006_unnamed.migration.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/00000007_unnamed.migration.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/harness/app.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/texts_controller_test.dart" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -25,112 +48,7 @@
     <favorites_list name="tcc_lang_backend" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/pubspec.yaml">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" selection-start-line="10" selection-end-line="10" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/model/text.dart">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="30">
-                  <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-                  <folding>
-                    <element signature="e#0#19#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/model/word_section.dart">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="9" selection-start-line="9" selection-end-line="9" />
-                  <folding>
-                    <element signature="e#0#38#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../Softwares/flutter/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/managed/attributes.dart">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1035">
-                  <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/model/user.dart">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="165">
-                  <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-                  <folding>
-                    <element signature="e#0#44#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/lib/controller/texts_controller.dart">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="257">
-                  <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
-                  <folding>
-                    <element signature="e#0#20#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../Softwares/flutter/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/query/query.dart">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3930">
-                  <caret line="273" column="15" selection-start-line="273" selection-start-column="15" selection-end-line="273" selection-end-column="15" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/lib/model/word_section.dart">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="135">
-                  <caret line="9" selection-start-line="9" selection-end-line="9" />
-                  <folding>
-                    <element signature="e#0#38#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/lib/controller/register_controller.dart">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -148,6 +66,8 @@
       <find>userName</find>
       <find>username</find>
       <find>name</find>
+      <find>post</find>
+      <find>entity</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -168,13 +88,13 @@
         <option value="$PROJECT_DIR$/config.yaml" />
         <option value="$PROJECT_DIR$/bin/main.dart" />
         <option value="$PROJECT_DIR$/lib/model/user.dart" />
-        <option value="$PROJECT_DIR$/lib/channel.dart" />
         <option value="$PROJECT_DIR$/lib/controller/register_controller.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
         <option value="$PROJECT_DIR$/test/texts_controller_test.dart" />
         <option value="$PROJECT_DIR$/lib/model/text.dart" />
         <option value="$PROJECT_DIR$/lib/model/word_section.dart" />
         <option value="$PROJECT_DIR$/lib/controller/texts_controller.dart" />
+        <option value="$PROJECT_DIR$/lib/channel.dart" />
       </list>
     </option>
   </component>
@@ -185,53 +105,17 @@
     <option name="height" value="761" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="tcc_lang_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tcc_lang_backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tcc_lang_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tcc_lang_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tcc_lang_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tcc_lang_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tcc_lang_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tcc_lang_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tcc_lang_backend" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tcc_lang_backend" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Android/Sdk" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tcc_lang" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunDashboard">
@@ -246,9 +130,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Dart Test.GET /heroes returns 200 OK in texts_controller_test.dart">
+  <component name="RunManager" selected="Dart Command Line App.main.dart">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" singleton="false">
       <option name="filePath" value="$PROJECT_DIR$/bin/main.dart" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main.dart" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application" singleton="false" temporary="true" nameIsGenerated="true">
+      <option name="filePath" value="$PROJECT_DIR$/bin/main.dart" />
+      <option name="workingDirectory" value="$PROJECT_DIR$" />
       <method v="2" />
     </configuration>
     <configuration name="GET /heroes returns 200 OK in texts_controller_test.dart" type="DartTestRunConfigurationType" factoryName="Dart Test" temporary="true" nameIsGenerated="true">
@@ -275,6 +164,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Dart Command Line App.main.dart" />
         <item itemvalue="Dart Test.GET /heroes returns 200 OK in texts_controller_test.dart" />
       </list>
     </recent_temporary>
@@ -293,12 +183,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="tests_in_example_test_dart - 2019.08.15 at 16h 32m 36s.xml">
-      <configuration name="tests in example_test.dart" configurationId="DartTestRunConfigurationType" />
-    </history-entry>
-    <history-entry file="tests_in_hero_controller_test_dart - 2019.08.15 at 16h 33m 19s.xml">
-      <configuration name="tests in hero_controller_test.dart" configurationId="DartTestRunConfigurationType" />
-    </history-entry>
     <history-entry file="GET__heroes_returns_200_OK_in_hero_controller_test_dart - 2019.08.15 at 16h 35m 45s.xml">
       <configuration name="GET /heroes returns 200 OK in hero_controller_test.dart" configurationId="DartTestRunConfigurationType" />
     </history-entry>
@@ -323,23 +207,28 @@
     <history-entry file="GET__heroes_returns_200_OK_in_texts_controller_test_dart - 2019.08.22 at 00h 24m 12s.xml">
       <configuration name="GET /heroes returns 200 OK in texts_controller_test.dart" configurationId="DartTestRunConfigurationType" />
     </history-entry>
+    <history-entry file="GET__heroes_returns_200_OK_in_texts_controller_test_dart - 2019.09.21 at 15h 23m 37s.xml">
+      <configuration name="GET /heroes returns 200 OK in texts_controller_test.dart" configurationId="DartTestRunConfigurationType" />
+    </history-entry>
+    <history-entry file="GET__heroes_returns_200_OK_in_texts_controller_test_dart - 2019.09.21 at 15h 31m 31s.xml">
+      <configuration name="GET /heroes returns 200 OK in texts_controller_test.dart" configurationId="DartTestRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="913" y="-20" width="451" height="761" extended-state="6" />
-    <editor active="true" />
+    <frame x="-2" y="-24" width="1370" height="769" extended-state="6" />
     <layout>
-      <window_info id="Structure" order="0" sideWeight="0.50708663" side_tool="true" weight="0.22575517" />
+      <window_info id="Structure" order="0" sideWeight="0.18734793" side_tool="true" visible="true" weight="0.14090909" />
       <window_info id="Favorites" order="1" sideWeight="0.5027027" side_tool="true" weight="0.16952264" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="Resources Explorer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Captures" order="6" weight="0.25" />
-      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.4929134" visible="true" weight="0.13216957" />
+      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.81265205" weight="0.24597365" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.33614627" />
       <window_info anchor="bottom" id="TODO" order="1" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.36324325" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="3" visible="true" weight="0.32125986" />
+      <window_info anchor="bottom" id="Debug" order="2" weight="0.20839813" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.32043344" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Flutter Performance" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" />
@@ -355,23 +244,24 @@
       <window_info anchor="right" id="Assistant" order="6" visible="true" weight="0.33414933" />
     </layout>
     <layout-to-restore>
-      <window_info id="Structure" order="0" sideWeight="0.50708663" side_tool="true" weight="0.22575517" />
+      <window_info id="Structure" order="0" sideWeight="0.18734793" side_tool="true" visible="true" weight="0.13409092" />
       <window_info id="Favorites" order="1" sideWeight="0.5027027" side_tool="true" weight="0.16952264" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="Resources Explorer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Captures" order="6" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="7" sideWeight="0.4929134" visible="true" weight="0.111929305" />
+      <window_info content_ui="combo" id="Project" order="7" sideWeight="0.81265205" weight="0.13409092" />
       <window_info anchor="bottom" id="Run" order="0" weight="0.33614627" />
       <window_info anchor="bottom" id="TODO" order="1" />
-      <window_info anchor="bottom" id="Debug" order="2" weight="0.36324325" />
-      <window_info anchor="bottom" id="Terminal" order="3" />
+      <window_info anchor="bottom" id="Debug" order="2" visible="true" weight="0.3608087" />
+      <window_info anchor="bottom" id="Terminal" order="3" weight="0.32043344" />
       <window_info anchor="bottom" id="Event Log" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Flutter Performance" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" />
       <window_info anchor="bottom" id="Dart Analysis" order="7" weight="0.14488189" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.32865733" />
+      <window_info anchor="bottom" id="Messages" order="9" weight="0.11975116" />
       <window_info anchor="right" id="Theme Preview" order="0" />
       <window_info anchor="right" id="Flutter Inspector" order="1" />
       <window_info anchor="right" id="Flutter Outline" order="2" />
@@ -382,37 +272,14 @@
     </layout-to-restore>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/http/resource_controller.dart" />
     <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/http/response.dart" />
-    <entry file="file://$PROJECT_DIR$/migrations/00000001_initial.migration.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/migrations/00000001_initial.migration.dart" />
     <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/test_core-0.2.5/lib/test_core.dart" />
     <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct_test-1.0.1/lib/src/harness.dart" />
-    <entry file="file://$PROJECT_DIR$/test/harness/app.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/test/harness/app.dart" />
     <entry file="file://$PROJECT_DIR$/test/example_test.dart" />
     <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/auth/authorization_server.dart" />
-    <entry file="file://$PROJECT_DIR$/analysis_options.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-969" />
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/analysis_options.yaml" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -420,100 +287,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/application/options.dart" />
-    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.5/lib/src/backend/invoker.dart" />
-    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.5/lib/src/backend/declarer.dart" />
-    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.5/lib/src/frontend/expect.dart" />
     <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/managed_auth.dart" />
-    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/managed/object.dart" />
-    <entry file="file://$PROJECT_DIR$/bin/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/00000002_unnamed.migration.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="8" column="207" selection-start-line="8" selection-start-column="207" selection-end-line="8" selection-end-column="207" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/00000004_unnamed.migration.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/migrations/00000003_unnamed.migration.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.src.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="18" lean-forward="true" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/application/options.dart">
+    <entry file="file://$PROJECT_DIR$/bin/main.dart" />
+    <entry file="file://$PROJECT_DIR$/migrations/00000002_unnamed.migration.dart" />
+    <entry file="file://$PROJECT_DIR$/migrations/00000004_unnamed.migration.dart" />
+    <entry file="file://$PROJECT_DIR$/migrations/00000003_unnamed.migration.dart" />
+    <entry file="file://$PROJECT_DIR$/config.src.yaml" />
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/application/options.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/channel.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-262">
-          <caret line="17" column="52" selection-start-line="17" selection-start-column="52" selection-end-line="17" selection-end-column="52" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="21" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/backend.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="e#0#166#0" expanded="true" />
-            <element signature="e#61#81#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/auth/auth_controller.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Softwares/flutter/bin/cache/dart-sdk/lib/_http/http.dart">
+    <entry file="file://$PROJECT_DIR$/config.yaml" />
+    <entry file="file://$PROJECT_DIR$/lib/backend.dart" />
+    <entry file="file://$USER_HOME$/Softwares/flutter/bin/cache/dart-sdk/lib/_http/http.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
           <caret line="872" column="10" selection-start-line="872" selection-start-column="10" selection-end-line="872" selection-end-column="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.lock">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Softwares/flutter/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/managed_auth.dart">
+    <entry file="file://$PROJECT_DIR$/pubspec.lock" />
+    <entry file="file://$USER_HOME$/Softwares/flutter/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/managed_auth.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="43">
           <caret line="236" column="6" selection-start-line="236" selection-start-column="6" selection-end-line="236" selection-end-column="6" />
@@ -527,89 +324,95 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/texts_controller_test.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="13" lean-forward="true" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <marker date="1568902547453" expanded="true" signature="851:951" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Softwares/flutter/bin/cache/dart-sdk/lib/html/dart2js/html_dart2js.dart">
+    <entry file="file://$USER_HOME$/Softwares/flutter/bin/cache/dart-sdk/lib/html/dart2js/html_dart2js.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="28315" selection-start-line="28315" selection-end-line="28315" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pubspec.yaml">
+    <entry file="file://$PROJECT_DIR$/pubspec.yaml" />
+    <entry file="file://$USER_HOME$/Softwares/flutter/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/managed/attributes.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/model/text.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Softwares/flutter/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/managed/attributes.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
+        <state relative-caret-position="1173">
           <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/model/user.dart">
+    <entry file="file://$PROJECT_DIR$/lib/model/user.dart" />
+    <entry file="file://$USER_HOME$/Softwares/flutter/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/query/query.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="46" selection-start-line="13" selection-start-column="46" selection-end-line="13" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Softwares/flutter/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/query/query.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3930">
+        <state relative-caret-position="4454">
           <caret line="273" column="15" selection-start-line="273" selection-start-column="15" selection-end-line="273" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/model/word_section.dart">
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.5/lib/src/backend/invoker.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2935">
+          <caret line="249" column="6" selection-start-line="249" selection-start-column="6" selection-end-line="249" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/controller/register_controller.dart">
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.5/lib/src/backend/declarer.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+        <state relative-caret-position="127">
+          <caret line="167" column="16" selection-start-line="167" selection-start-column="16" selection-end-line="167" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/controller/texts_controller.dart">
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/test_api-0.2.5/lib/src/frontend/expect.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="352">
+          <caret line="160" column="24" lean-forward="true" selection-start-line="160" selection-start-column="24" selection-end-line="160" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/texts_controller_test.dart" />
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/auth/auth_controller.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="174">
+          <caret line="29" column="3" lean-forward="true" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/channel.dart" />
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/http/resource_controller.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="368" lean-forward="true" selection-start-line="368" selection-end-line="368" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/model/text.dart" />
+    <entry file="file://$PROJECT_DIR$/lib/model/word_section.dart" />
+    <entry file="file://$PROJECT_DIR$/lib/controller/register_controller.dart" />
+    <entry file="file://$PROJECT_DIR$/lib/controller/texts_controller.dart" />
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/managed/object.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1016">
+          <caret line="83" lean-forward="true" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/postgresql/postgresql_query.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="50" column="20" selection-start-line="50" selection-start-column="20" selection-end-line="50" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/postgres-1.0.2/lib/src/connection.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="408" column="8" selection-start-line="408" selection-start-column="8" selection-end-line="408" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/aqueduct-3.2.1/lib/src/db/postgresql/postgresql_persistent_store.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="316" column="8" selection-start-line="316" selection-start-column="8" selection-end-line="316" selection-end-column="8" />
         </state>
       </provider>
     </entry>
