@@ -54,6 +54,7 @@ namespace tcc_lang_backend
                 };
             });
             services.AddScoped<AuthBusiness>();
+            services.AddScoped<TextsBusiness>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -39,7 +39,7 @@ namespace tcc_lang_backend.Business
 
             return new TokenResponse
             {
-                Token = $"Bearer {new JwtSecurityTokenHandler().WriteToken(token)}",
+                Token = new JwtSecurityTokenHandler().WriteToken(token),
                 ExpirationDate = token.ValidTo
             };
         }

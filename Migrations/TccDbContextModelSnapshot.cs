@@ -19,14 +19,30 @@ namespace tcc_lang_backend.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
+            modelBuilder.Entity("tcc_lang_backend.DB.Flashcard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Flashcards");
+                });
+
             modelBuilder.Entity("tcc_lang_backend.DB.Text", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int?>("FlashcardId");
+
                     b.Property<string>("Title");
 
+                    b.Property<string>("Words");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("FlashcardId");
 
                     b.ToTable("Texts");
                 });
@@ -56,29 +72,11 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.WordSection", b =>
+            modelBuilder.Entity("tcc_lang_backend.DB.Text", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsPressed");
-
-                    b.Property<int?>("TextId");
-
-                    b.Property<string>("Word");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TextId");
-
-                    b.ToTable("WordSections");
-                });
-
-            modelBuilder.Entity("tcc_lang_backend.DB.WordSection", b =>
-                {
-                    b.HasOne("tcc_lang_backend.DB.Text", "Text")
-                        .WithMany("WordSections")
-                        .HasForeignKey("TextId");
+                    b.HasOne("tcc_lang_backend.DB.Flashcard", "Flashcard")
+                        .WithMany()
+                        .HasForeignKey("FlashcardId");
                 });
 #pragma warning restore 612, 618
         }
