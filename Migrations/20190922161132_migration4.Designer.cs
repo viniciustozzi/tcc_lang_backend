@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using tcc_lang_backend.DB;
+using TccLangBackend.Api.DB;
+using TccLangBackend.DB;
+using TccLangBaekend.DB;
 
-namespace tcc_lang_backend.Migrations
+namespace TccLangBackend.Api.Migrations
 {
     [DbContext(typeof(TccDbContext))]
     [Migration("20190922161132_migration4")]
@@ -21,7 +23,7 @@ namespace tcc_lang_backend.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Text", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Text", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -33,7 +35,7 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Texts");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.User", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -58,7 +60,7 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.WordSection", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.WordSection", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -76,9 +78,9 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("WordSections");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.WordSection", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.WordSection", b =>
                 {
-                    b.HasOne("tcc_lang_backend.DB.Text", "Text")
+                    b.HasOne("TccLangBackend.Api.DB.Text", "Text")
                         .WithMany("WordSections")
                         .HasForeignKey("TextId");
                 });

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace tcc_lang_backend.Migrations
+namespace TccLangBackend.Api.Migrations
 {
     public partial class addsDeck : Migration
     {

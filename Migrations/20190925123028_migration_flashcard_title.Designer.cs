@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using tcc_lang_backend.DB;
+using TccLangBackend.Api.DB;
+using TccLangBackend.DB;
+using TccLangBaekend.DB;
 
-namespace tcc_lang_backend.Migrations
+namespace TccLangBackend.Api.Migrations
 {
     [DbContext(typeof(TccDbContext))]
     [Migration("20190925123028_migration_flashcard_title")]
@@ -21,7 +23,7 @@ namespace tcc_lang_backend.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Flashcard", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Flashcard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -33,7 +35,7 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Flashcards");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Text", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Text", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -51,7 +53,7 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Texts");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.User", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -76,9 +78,9 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Text", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Text", b =>
                 {
-                    b.HasOne("tcc_lang_backend.DB.Flashcard", "Flashcard")
+                    b.HasOne("TccLangBackend.Api.DB.Flashcard", "Flashcard")
                         .WithMany()
                         .HasForeignKey("FlashcardId");
                 });

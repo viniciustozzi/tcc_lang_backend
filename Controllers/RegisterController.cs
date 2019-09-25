@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using tcc_lang_backend.Business;
+using TccLangBackend.Api.Business;
 
-namespace tcc_lang_backend.Controllers
+namespace TccLangBackend.Api.Controllers
 {
     [Route("api/register")]
     [ApiController]

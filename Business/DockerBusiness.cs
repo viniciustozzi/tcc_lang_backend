@@ -1,6 +1,8 @@
-using tcc_lang_backend.DB;
+using TccLangBackend.Api.DB;
+using TccLangBackend.DB;
+using TccLangBaekend.DB;
 
-namespace tcc_lang_backend.Business
+namespace TccLangBackend.Api.Business
 {
     public class DockerBusiness
     {

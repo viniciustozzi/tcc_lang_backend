@@ -5,9 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using tcc_lang_backend.DB;
+using TccLangBackend.Api.DB;
+using TccLangBackend.DB;
+using TccLangBaekend.DB;
 
-namespace tcc_lang_backend.Migrations
+namespace TccLangBackend.Api.Migrations
 {
     [DbContext(typeof(TccDbContext))]
     [Migration("20190925170538_addsDeck")]
@@ -21,7 +23,7 @@ namespace tcc_lang_backend.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Deck", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Deck", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -37,7 +39,7 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Deck");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Flashcard", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Flashcard", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -53,7 +55,7 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Flashcards");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Text", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Text", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -67,7 +69,7 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Texts");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.User", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -92,16 +94,16 @@ namespace tcc_lang_backend.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Deck", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Deck", b =>
                 {
-                    b.HasOne("tcc_lang_backend.DB.Text", "Text")
+                    b.HasOne("TccLangBackend.Api.DB.Text", "Text")
                         .WithMany("Decks")
                         .HasForeignKey("TextId");
                 });
 
-            modelBuilder.Entity("tcc_lang_backend.DB.Flashcard", b =>
+            modelBuilder.Entity("TccLangBackend.Api.DB.Flashcard", b =>
                 {
-                    b.HasOne("tcc_lang_backend.DB.Deck", "Deck")
+                    b.HasOne("TccLangBackend.Api.DB.Deck", "Deck")
                         .WithMany("Flashcards")
                         .HasForeignKey("DockerId")
                         .OnDelete(DeleteBehavior.Cascade);
