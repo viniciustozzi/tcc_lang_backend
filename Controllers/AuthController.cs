@@ -6,7 +6,7 @@ namespace tcc_lang_backend.Controllers
 {
     [Route("api/auth")]
     [ApiController]
-    public class AuthController : Controller
+    public class AuthController : ControllerBase
     {
         private readonly AuthBusiness _authBusiness;
 

@@ -8,7 +8,7 @@ namespace tcc_lang_backend.Controllers
 {
     [Route("api/texts")]
     [ApiController]
-    public class TextController : Controller
+    public class TextController : ControllerBase
     {
         private readonly TextsBusiness _textsBusiness;
 

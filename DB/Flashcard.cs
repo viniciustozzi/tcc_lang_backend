@@ -7,7 +7,6 @@ namespace tcc_lang_backend.DB
 
     {
         [Key] public int Id { get; set; }
-
-//        public virtual ICollection<WordSection> WordSections { get; set; }
+        public string Title { get; set; }
     }
 }

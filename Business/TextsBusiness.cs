@@ -23,9 +23,9 @@ namespace tcc_lang_backend.Business
             return _dbContext.Texts.AsEnumerable();
         }
 
-        public async Task<Text> GetText(int id)
+        public Task<Text> GetText(int id)
         {
-            return await _dbContext.Texts.FindAsync(id);
+            return _dbContext.Texts.FindAsync(id);
         }
 
         public async Task<Text> SaveText([FromBody] TextRequest textRequest)
