@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TccLangBackend.DB.DB;
 using TccLangBackend.DB;
-using TccLangBaekend.DB;
 
 namespace TccLangBackend.DB.Migrations
 {

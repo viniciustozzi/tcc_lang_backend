@@ -1,26 +1,35 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TccLangBackend.Core.Flashcard;
+using TccLangBackend.DB;
 using TccLangBackend.DB.Business;
-using TccLangBackend.DB.DB;
 
-namespace TccLangBackend.DB.Controllers
+namespace TccLangBackend.Api.Controllers
 {
     [Route("api/flashcards")]
     [ApiController]
     public class FlashcardsController : ControllerBase
     {
         private readonly FlashcardsBusiness _flashcardsBusiness;
+        private readonly int _userId;
 
-        public FlashcardsController(FlashcardsBusiness flashcardsBusiness) => _flashcardsBusiness = flashcardsBusiness;
+        public FlashcardsController(FlashcardsBusiness flashcardsBusiness)
+        {
+            var stringUserId = HttpContext.User.FindFirst(ClaimTypes.Sid).Value;
+            _userId = int.Parse(stringUserId);
+            _flashcardsBusiness = flashcardsBusiness;
+        }
 
         [HttpGet]
-        public IEnumerable<Flashcard> GetFlashcards() => _flashcardsBusiness.GetFlashcards();
+        public IEnumerable<ModelFlashcard> GetFlashcards() => _flashcardsBusiness.GetFlashcards(_userId);
 
         [HttpGet("{id}")]
-        public Task<Flashcard> GetFlashcard(int id) => _flashcardsBusiness.GetFlashcard(id);
+        public Task<ModelFlashcard> GetFlashcard(int id) => _flashcardsBusiness.GetFlashcard(_userId, id);
 
         [HttpPost]
-        public Task SaveFlashcard([FromBody] FlashcardRequest request) => _flashcardsBusiness.SaveFlashcard(request);
+        public Task SaveFlashcard([FromBody] CreateFlashcard request) => _flashcardsBusiness.Create(request);
     }
 }

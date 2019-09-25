@@ -6,8 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 using TccLangBackend.DB.Business;
-using TccLangBaekend.DB;
 
 namespace TccLangBackend.DB
 {
@@ -42,6 +42,7 @@ namespace TccLangBackend.DB
                     ValidIssuer = Configuration["SiteUrl"]
                 };
             });
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"}); });
             services.AddScoped<AuthBusiness>();
             services.AddScoped<TextsBusiness>();
             services.AddScoped<FlashcardsBusiness>();
@@ -55,6 +56,13 @@ namespace TccLangBackend.DB
             else
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+
+
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
 
             app.UseMvc();
 

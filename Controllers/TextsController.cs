@@ -2,7 +2,6 @@ using System.Collections;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TccLangBackend.DB.Business;
-using TccLangBackend.DB.DB;
 
 namespace TccLangBackend.DB.Controllers
 {

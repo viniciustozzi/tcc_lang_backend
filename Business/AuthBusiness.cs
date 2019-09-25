@@ -10,8 +10,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using TccLangBackend.DB.DB;
-using TccLangBaekend.DB;
 
 namespace TccLangBackend.DB.Business
 {
@@ -77,15 +75,13 @@ namespace TccLangBackend.DB.Business
         {
             var jwtSecurityToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
             var id = int.Parse(jwtSecurityToken.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value);
-//            var roles = jwtSecurityToken.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value);
             return new UserToken
             {
                 UserId = id
-//                Roles = roles
             };
         }
 
-        public JwtSecurityToken CreateJwtToken(User user) =>
+        private JwtSecurityToken CreateJwtToken(User user) =>
             new JwtSecurityToken(
                 _configuration["SiteUrl"],
                 _configuration["SiteUrl"],
@@ -96,17 +92,11 @@ namespace TccLangBackend.DB.Business
                     SecurityAlgorithms.HmacSha256)
             );
 
-        private static IEnumerable<Claim> GetUserClaims(User user)
-        {
-            var claims = new List<Claim>
+        private static IEnumerable<Claim> GetUserClaims(User user) =>
+            new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Id.ToString())
+                new Claim(ClaimTypes.Sid, user.Id.ToString())
             };
-
-//            claims.AddRange(user.Roles.Select(r => new Claim(ClaimTypes.Role, r)));
-
-            return claims;
-        }
 
         public static void CreatePasswordHash(string rawPassword, out byte[] hashedPassword, out byte[] salt)
         {
