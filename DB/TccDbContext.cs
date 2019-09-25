@@ -17,6 +17,16 @@ namespace tcc_lang_backend.DB
         {
             modelBuilder.Entity<User>()
                 .HasIndex(e => e.Username).IsUnique();
+
+            modelBuilder.Entity<Deck>()
+                .HasMany(x => x.Flashcards)
+                .WithOne(x => x.Deck)
+                .HasForeignKey(x => x.DockerId);
+
+            modelBuilder.Entity<Text>()
+                .HasMany(x => x.Decks)
+                .WithOne(x => x.Text)
+                .HasForeignKey(x => x.TextId);
         }
     }
 }

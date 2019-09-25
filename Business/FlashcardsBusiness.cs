@@ -16,15 +16,9 @@ namespace tcc_lang_backend.Business
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Flashcard> GetFlashcards()
-        {
-            return _dbContext.Flashcards.AsEnumerable();
-        }
+        public IEnumerable<Flashcard> GetFlashcards() => _dbContext.Flashcards;
 
-        public Task<Flashcard> GetFlashcard(int id)
-        {
-            return _dbContext.Flashcards.FindAsync(id);
-        }
+        public Task<Flashcard> GetFlashcard(int id) => _dbContext.Flashcards.FindAsync(id);
 
         public async Task SaveFlashcard(FlashcardRequest request)
         {
@@ -43,6 +37,6 @@ namespace tcc_lang_backend.Business
     public class FlashcardRequest
     {
         public int Id { get; set; }
-        public String Title { get; set; }
+        public string Title { get; set; }
     }
 }
