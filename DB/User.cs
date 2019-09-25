@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace tcc_lang_backend.DB
@@ -18,5 +19,7 @@ namespace tcc_lang_backend.DB
 
         [Required]
         public byte[] PasswordSalt { get; set; }
+
+        public IList<Deck> Decks { get; set; }
     }
 }

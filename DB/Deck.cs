@@ -12,7 +12,11 @@ namespace tcc_lang_backend.DB
 
         public int? TextId { get; set; }
 
+        public int UserId { get; set; }
+
         public Text Text { get; set; }
+
+        public User User { get; set; }
 
         public IList<Flashcard> Flashcards { get; set; }
     }
