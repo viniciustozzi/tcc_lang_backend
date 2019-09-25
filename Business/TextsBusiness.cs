@@ -2,11 +2,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TccLangBackend.Api.DB;
-using TccLangBackend.DB;
+using TccLangBackend.DB.DB;
 using TccLangBaekend.DB;
 
-namespace TccLangBackend.Api.Business
+namespace TccLangBackend.DB.Business
 {
     public class TextsBusiness
     {

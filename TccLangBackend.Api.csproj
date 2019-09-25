@@ -18,6 +18,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <ProjectReference Include="..\..\RiderProjects\TccLangBackend.Core\TccLangBackend.Core.csproj" />
     <ProjectReference Include="..\..\RiderProjects\TccLangBackend.DB\TccLangBackend.DB.csproj" />
   </ItemGroup>
 

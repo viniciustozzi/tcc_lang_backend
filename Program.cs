@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace TccLangBackend.Api
+namespace TccLangBackend.DB
 {
     public class Program
     {

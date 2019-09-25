@@ -6,12 +6,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using TccLangBackend.Api.DB;
-using TccLangBackend.Api.Business;
-using TccLangBackend.DB;
+using TccLangBackend.DB.Business;
 using TccLangBaekend.DB;
 
-namespace TccLangBackend.Api
+namespace TccLangBackend.DB
 {
     public class Startup
     {

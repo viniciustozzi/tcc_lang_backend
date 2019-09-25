@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TccLangBackend.Api.Business;
+using TccLangBackend.DB.Business;
 
-namespace TccLangBackend.Api.Controllers
+namespace TccLangBackend.DB.Controllers
 {
     [Route("api/register")]
     [ApiController]

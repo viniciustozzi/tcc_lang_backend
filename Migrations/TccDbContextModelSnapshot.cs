@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TccLangBackend.Api.DB;
+using TccLangBackend.DB.DB;
 using TccLangBackend.DB;
 using TccLangBaekend.DB;
 
-namespace TccLangBackend.Api.Migrations
+namespace TccLangBackend.DB.Migrations
 {
     [DbContext(typeof(TccDbContext))]
     partial class TccDbContextModelSnapshot : ModelSnapshot

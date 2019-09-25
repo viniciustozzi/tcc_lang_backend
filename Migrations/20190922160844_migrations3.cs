@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TccLangBackend.Api.Migrations
+namespace TccLangBackend.DB.Migrations
 {
     public partial class migrations3 : Migration
     {

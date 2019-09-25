@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TccLangBackend.Api.DB;
-using TccLangBackend.DB;
+using TccLangBackend.DB.DB;
 using TccLangBaekend.DB;
 
-namespace TccLangBackend.Api.Business
+namespace TccLangBackend.DB.Business
 {
     public class FlashcardsBusiness
     {

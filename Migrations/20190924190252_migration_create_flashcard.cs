@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace TccLangBackend.Api.Migrations
+namespace TccLangBackend.DB.Migrations
 {
     public partial class migration_create_flashcard : Migration
     {

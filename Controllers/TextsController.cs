@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TccLangBackend.Api.Business;
-using TccLangBackend.Api.DB;
+using TccLangBackend.DB.Business;
+using TccLangBackend.DB.DB;
 
-namespace TccLangBackend.Api.Controllers
+namespace TccLangBackend.DB.Controllers
 {
     [Route("api/texts")]
     [ApiController]

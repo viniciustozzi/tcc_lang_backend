@@ -10,11 +10,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using TccLangBackend.Api.DB;
-using TccLangBackend.DB;
+using TccLangBackend.DB.DB;
 using TccLangBaekend.DB;
 
-namespace TccLangBackend.Api.Business
+namespace TccLangBackend.DB.Business
 {
     public class AuthBusiness
     {
