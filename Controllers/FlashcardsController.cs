@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -13,27 +12,15 @@ namespace tcc_lang_backend.Controllers
     {
         private readonly FlashcardsBusiness _flashcardsBusiness;
 
-        public FlashcardsController(FlashcardsBusiness flashcardsBusiness)
-        {
-            _flashcardsBusiness = flashcardsBusiness;
-        }
+        public FlashcardsController(FlashcardsBusiness flashcardsBusiness) => _flashcardsBusiness = flashcardsBusiness;
 
         [HttpGet]
-        public IEnumerable<Flashcard> GetFlashcards()
-        {
-            return _flashcardsBusiness.GetFlashcards();
-        }
+        public IEnumerable<Flashcard> GetFlashcards() => _flashcardsBusiness.GetFlashcards();
 
         [HttpGet("{id}")]
-        public Task<Flashcard> GetFlashcard(int id)
-        {
-            return _flashcardsBusiness.GetFlashcard(id);
-        }
+        public Task<Flashcard> GetFlashcard(int id) => _flashcardsBusiness.GetFlashcard(id);
 
         [HttpPost]
-        public Task SaveFlashcard([FromBody] FlashcardRequest request)
-        {
-            return _flashcardsBusiness.SaveFlashcard(request);
-        }
+        public Task SaveFlashcard([FromBody] FlashcardRequest request) => _flashcardsBusiness.SaveFlashcard(request);
     }
 }

@@ -1,17 +1,16 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace tcc_lang_backend.DB
 {
     public class TccDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<Text> Texts { get; set; }
-        public DbSet<Flashcard> Flashcards { get; set; }
-
         public TccDbContext(DbContextOptions options) : base(options)
         {
         }
+
+        public DbSet<User> Users { get; set; }
+        public DbSet<Text> Texts { get; set; }
+        public DbSet<Flashcard> Flashcards { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

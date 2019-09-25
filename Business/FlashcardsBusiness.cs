@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using tcc_lang_backend.DB;
 
@@ -11,10 +8,7 @@ namespace tcc_lang_backend.Business
     {
         private readonly TccDbContext _dbContext;
 
-        public FlashcardsBusiness(TccDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        public FlashcardsBusiness(TccDbContext dbContext) => _dbContext = dbContext;
 
         public IEnumerable<Flashcard> GetFlashcards() => _dbContext.Flashcards;
 
@@ -22,7 +16,7 @@ namespace tcc_lang_backend.Business
 
         public async Task SaveFlashcard(FlashcardRequest request)
         {
-            var flashcard = new Flashcard()
+            var flashcard = new Flashcard
             {
                 Id = request.Id,
                 Title = request.Title

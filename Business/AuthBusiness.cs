@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json.Serialization;
 using tcc_lang_backend.DB;
 
 namespace tcc_lang_backend.Business
@@ -60,8 +60,10 @@ namespace tcc_lang_backend.Business
             return _dbContext.SaveChangesAsync();
         }
 
-        private Task<User> FindByUsernameAsync(string payloadUsername) =>
-            _dbContext.Users.FirstOrDefaultAsync(x => x.Username == payloadUsername);
+        private Task<User> FindByUsernameAsync(string payloadUsername)
+        {
+            return _dbContext.Users.FirstOrDefaultAsync(x => x.Username == payloadUsername);
+        }
 
         public static UserToken GetTokenFromContext(HttpContext request)
         {
@@ -77,7 +79,7 @@ namespace tcc_lang_backend.Business
 //            var roles = jwtSecurityToken.Claims.Where(x => x.Type == ClaimTypes.Role).Select(x => x.Value);
             return new UserToken
             {
-                UserId = id,
+                UserId = id
 //                Roles = roles
             };
         }
@@ -97,7 +99,7 @@ namespace tcc_lang_backend.Business
         {
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Id.ToString())
             };
 
 //            claims.AddRange(user.Roles.Select(r => new Claim(ClaimTypes.Role, r)));
@@ -107,10 +109,10 @@ namespace tcc_lang_backend.Business
 
         public static void CreatePasswordHash(string rawPassword, out byte[] hashedPassword, out byte[] salt)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (var hmac = new HMACSHA512())
             {
                 salt = hmac.Key;
-                hashedPassword = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(rawPassword));
+                hashedPassword = hmac.ComputeHash(Encoding.UTF8.GetBytes(rawPassword));
             }
         }
 
@@ -121,13 +123,12 @@ namespace tcc_lang_backend.Business
             if (storedSalt.Length != 128)
                 throw new ArgumentException("Invalid length of password salt (128 bytes expected).", "passwordHash");
 
-            using (var hmac = new System.Security.Cryptography.HMACSHA512(storedSalt))
+            using (var hmac = new HMACSHA512(storedSalt))
             {
-                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(rawPassword));
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(rawPassword));
                 for (var i = 0; i < computedHash.Length; i++)
-                {
-                    if (computedHash[i] != storedHash[i]) return false;
-                }
+                    if (computedHash[i] != storedHash[i])
+                        return false;
             }
 
             return true;
@@ -136,15 +137,15 @@ namespace tcc_lang_backend.Business
 
     public class RegisterRequest
     {
-        public String Username { get; set; }
-        public String Fullname { get; set; }
-        public String Password { get; set; }
+        public string Username { get; set; }
+        public string Fullname { get; set; }
+        public string Password { get; set; }
     }
 
     public class AuthRequest
     {
-        public String Username { get; set; }
-        public String Password { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
     }
 
     public class TokenResponse

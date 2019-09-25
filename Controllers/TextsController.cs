@@ -12,27 +12,15 @@ namespace tcc_lang_backend.Controllers
     {
         private readonly TextsBusiness _textsBusiness;
 
-        public TextController(TextsBusiness textsBusiness)
-        {
-            _textsBusiness = textsBusiness;
-        }
+        public TextController(TextsBusiness textsBusiness) => _textsBusiness = textsBusiness;
 
         [HttpGet]
-        public IEnumerable GetTexts()
-        {
-            return _textsBusiness.GetTexts();
-        }
+        public IEnumerable GetTexts() => _textsBusiness.GetTexts();
 
         [HttpGet("{id}")]
-        public Task<Text> GetText(int id)
-        {
-            return _textsBusiness.GetText(id);
-        }
+        public Task<Text> GetText(int id) => _textsBusiness.GetText(id);
 
         [HttpPost]
-        public Task<Text> SaveText([FromBody] TextRequest textRequest)
-        {
-            return _textsBusiness.SaveText(textRequest);
-        }
+        public Task<Text> SaveText([FromBody] TextRequest textRequest) => _textsBusiness.SaveText(textRequest);
     }
 }

@@ -10,11 +10,9 @@ namespace tcc_lang_backend.Controllers
     {
         private readonly AuthBusiness _authBusiness;
 
-        public AuthController(AuthBusiness authBusiness) =>
-            _authBusiness = authBusiness;
+        public AuthController(AuthBusiness authBusiness) => _authBusiness = authBusiness;
 
         [HttpPost]
-        public Task<TokenResponse> Auth([FromBody] AuthRequest payload) =>
-            _authBusiness.Authenticate(payload);
+        public Task<TokenResponse> Auth([FromBody] AuthRequest payload) => _authBusiness.Authenticate(payload);
     }
 }
