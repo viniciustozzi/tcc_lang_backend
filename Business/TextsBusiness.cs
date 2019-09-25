@@ -25,9 +25,7 @@ namespace tcc_lang_backend.Business
 
         public async Task<Text> GetText(int id)
         {
-            return await _dbContext.Texts
-                .Include(x => x.Words)
-                .FirstOrDefaultAsync(x => x.Id == id);
+            return await _dbContext.Texts.FindAsync(id);
         }
 
         public async Task<Text> SaveText([FromBody] TextRequest textRequest)
