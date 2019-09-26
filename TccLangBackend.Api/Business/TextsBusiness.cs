@@ -2,8 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TccLangBackend.DB;
 
-namespace TccLangBackend.DB.Business
+namespace TccLangBackend.Api.Business
 {
     public class TextsBusiness
     {

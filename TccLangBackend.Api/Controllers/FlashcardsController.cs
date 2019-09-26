@@ -1,10 +1,8 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TccLangBackend.Core.Flashcard;
-using TccLangBackend.DB;
 using TccLangBackend.DB.Business;
 
 namespace TccLangBackend.Api.Controllers

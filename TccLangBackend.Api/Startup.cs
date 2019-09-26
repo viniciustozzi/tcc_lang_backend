@@ -7,9 +7,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using TccLangBackend.Api.Business;
+using TccLangBackend.DB;
 using TccLangBackend.DB.Business;
 
-namespace TccLangBackend.DB
+namespace TccLangBackend.Api
 {
     public class Startup
     {

@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TccLangBackend.DB.Business;
+using TccLangBackend.Api.Business;
 
-namespace TccLangBackend.DB.Controllers
+namespace TccLangBackend.Api.Controllers
 {
     [Route("api/auth")]
     [ApiController]

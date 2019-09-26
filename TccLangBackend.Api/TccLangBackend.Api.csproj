@@ -21,8 +21,8 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\RiderProjects\TccLangBackend.Core\TccLangBackend.Core.csproj" />
-    <ProjectReference Include="..\..\RiderProjects\TccLangBackend.DB\TccLangBackend.DB.csproj" />
+    <ProjectReference Include="..\TccLangBackend.Core\TccLangBackend.Core.csproj" />
+    <ProjectReference Include="..\TccLangBackend.DB\TccLangBackend.DB.csproj" />
   </ItemGroup>
 
 </Project>
