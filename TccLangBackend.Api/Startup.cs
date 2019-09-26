@@ -1,15 +1,22 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.Security.Claims;
+using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using TccLangBackend.Api.Business;
+using TccLangBackend.Core.Deck;
+using TccLangBackend.Core.Flashcard;
 using TccLangBackend.DB;
 using TccLangBackend.DB.Business;
+using TccLangBackend.DB.Repositories;
 
 namespace TccLangBackend.Api
 {
@@ -22,7 +29,13 @@ namespace TccLangBackend.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
+            services.AddMvc(o =>
+            {
+                var policy = new AuthorizationPolicyBuilder()
+                    .RequireAuthenticatedUser()
+                    .Build();
+                o.Filters.Add(new AuthorizeFilter(policy));
+            });
             services.AddDbContext<TccDbContext>(
                 x => x.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -39,15 +52,30 @@ namespace TccLangBackend.Api
                 {
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JwtKey"])),
                     ValidAudience = Configuration["SiteUrl"],
-                    ValidateIssuerSigningKey = true,
-                    ValidateLifetime = true,
-                    ValidIssuer = Configuration["SiteUrl"]
+                    ValidateIssuer = false,
+                    ValidateActor = false
                 };
             });
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"}); });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info {Title = "My API", Version = "v1"});
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Description =
+                        "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+                    Name = "Authorization",
+
+                    In = "header",
+                    Type = "apiKey"
+                });
+            });
             services.AddScoped<AuthBusiness>();
             services.AddScoped<TextsBusiness>();
             services.AddScoped<FlashcardsBusiness>();
+            services.AddScoped<DeckBusiness>();
+            services.AddScoped<IDeckRepository, DeckRepository>();
+            services.AddScoped<IFlashcardRepository, FlashcardRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -65,10 +93,8 @@ namespace TccLangBackend.Api
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"); });
-
-            app.UseMvc();
-
             app.UseAuthentication();
+            app.UseMvc();
         }
     }
 }

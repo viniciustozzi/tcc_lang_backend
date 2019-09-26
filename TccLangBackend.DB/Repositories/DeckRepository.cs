@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using TccLangBackend.Core.Deck;
 
 namespace TccLangBackend.DB.Repositories
@@ -19,5 +22,16 @@ namespace TccLangBackend.DB.Repositories
 
             return _dbContext.SaveChangesAsync();
         }
+
+        public IEnumerable<ModelDeck> GetAll(int userId) =>
+            _dbContext.Decks
+                .Where(x => x.UserId == userId)
+                .Select(x => new ModelDeck(x.Id, x.Name));
+
+        public Task<ModelDeck> GetAsync(int userId, int deckId) =>
+            _dbContext.Decks
+                .Where(x => x.UserId == userId && x.Id == deckId)
+                .Select(x => new ModelDeck(x.Id, x.Name))
+                .FirstOrDefaultAsync();
     }
 }

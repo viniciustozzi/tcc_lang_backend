@@ -9,23 +9,17 @@ namespace TccLangBackend.Api.Controllers
 {
     [Route("api/flashcards")]
     [ApiController]
-    public class FlashcardsController : ControllerBase
+    public class FlashcardsController : UtilControllerBase
     {
         private readonly FlashcardsBusiness _flashcardsBusiness;
-        private readonly int _userId;
 
-        public FlashcardsController(FlashcardsBusiness flashcardsBusiness)
-        {
-            var stringUserId = HttpContext.User.FindFirst(ClaimTypes.Sid).Value;
-            _userId = int.Parse(stringUserId);
-            _flashcardsBusiness = flashcardsBusiness;
-        }
+        public FlashcardsController(FlashcardsBusiness flashcardsBusiness) => _flashcardsBusiness = flashcardsBusiness;
 
         [HttpGet]
-        public IEnumerable<ModelFlashcard> GetFlashcards() => _flashcardsBusiness.GetFlashcards(_userId);
+        public IEnumerable<ModelFlashcard> GetFlashcards() => _flashcardsBusiness.GetFlashcards(UserId);
 
         [HttpGet("{id}")]
-        public Task<ModelFlashcard> GetFlashcard(int id) => _flashcardsBusiness.GetFlashcard(_userId, id);
+        public Task<ModelFlashcard> GetFlashcard(int id) => _flashcardsBusiness.GetFlashcard(UserId, id);
 
         [HttpPost]
         public Task SaveFlashcard([FromBody] CreateFlashcard request) => _flashcardsBusiness.Create(request);

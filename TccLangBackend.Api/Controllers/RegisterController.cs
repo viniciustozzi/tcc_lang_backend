@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TccLangBackend.Api.Business;
 
@@ -12,7 +13,8 @@ namespace TccLangBackend.Api.Controllers
 
         public RegisterController(AuthBusiness authBusiness) => _authBusiness = authBusiness;
 
-        [HttpPost]
+
+        [HttpPost, AllowAnonymous]
         public Task Register([FromBody] RegisterRequest request) => _authBusiness.Register(request);
     }
 }
