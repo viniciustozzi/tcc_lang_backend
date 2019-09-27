@@ -1,4 +1,4 @@
-namespace TccLangBackend.DB.Business
+namespace TccLangBackend.Core.Flashcard
 {
     public class CreateFlashcard
     {

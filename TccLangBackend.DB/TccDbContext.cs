@@ -33,6 +33,11 @@ namespace TccLangBackend.DB
                 .HasMany(x => x.Decks)
                 .WithOne(x => x.User)
                 .HasForeignKey(x => x.UserId);
+
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.Texts)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId);
         }
     }
 }

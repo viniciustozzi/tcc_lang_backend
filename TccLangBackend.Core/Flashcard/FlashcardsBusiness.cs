@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TccLangBackend.Core.Flashcard;
 
-namespace TccLangBackend.DB.Business
+namespace TccLangBackend.Core.Flashcard
 {
     public class FlashcardsBusiness
     {

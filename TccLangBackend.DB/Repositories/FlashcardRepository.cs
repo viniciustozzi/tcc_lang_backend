@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TccLangBackend.Core.Flashcard;
-using TccLangBackend.DB.Business;
 
 namespace TccLangBackend.DB.Repositories
 {

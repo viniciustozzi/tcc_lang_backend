@@ -21,5 +21,7 @@ namespace TccLangBackend.DB
         public byte[] PasswordSalt { get; set; }
 
         public IList<Deck> Decks { get; set; }
+
+        public IList<Text> Texts { get; set; }
     }
 }

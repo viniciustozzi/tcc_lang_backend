@@ -13,8 +13,9 @@ namespace TccLangBackend.Api.Controllers
 
         public AuthController(AuthBusiness authBusiness) => _authBusiness = authBusiness;
 
-        
-        [HttpPost, AllowAnonymous]
+
+        [HttpPost]
+        [AllowAnonymous]
         public Task<TokenResponse> Auth([FromBody] AuthRequest payload) => _authBusiness.Authenticate(payload);
     }
 }

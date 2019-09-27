@@ -12,6 +12,10 @@ namespace TccLangBackend.DB
 
         public string Words { get; set; }
 
+        public int UserId { get; set; }
+
+        public User User { get; set; }
+
         public IList<Deck> Decks { get; set; }
     }
 }

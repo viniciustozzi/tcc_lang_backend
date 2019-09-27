@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TccLangBackend.DB.Business;
 
 namespace TccLangBackend.Core.Flashcard
 {

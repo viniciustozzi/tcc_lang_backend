@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace TccLangBackend.DB.Migrations
+namespace TccLangBackend.Api.Migrations
 {
     public partial class migration_remove_word_section : Migration
     {

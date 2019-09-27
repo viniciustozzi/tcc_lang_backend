@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TccLangBackend.Api.Controllers
 {
-    [ApiController]
     public class UtilControllerBase : Controller
     {
         protected int UserId => HttpContext.User.Claims
@@ -12,4 +11,4 @@ namespace TccLangBackend.Api.Controllers
             .Select(x => int.Parse(x.Value))
             .FirstOrDefault();
     }
-}    
+}

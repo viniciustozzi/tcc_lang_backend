@@ -14,7 +14,8 @@ namespace TccLangBackend.Api.Controllers
         public RegisterController(AuthBusiness authBusiness) => _authBusiness = authBusiness;
 
 
-        [HttpPost, AllowAnonymous]
+        [HttpPost]
+        [AllowAnonymous]
         public Task Register([FromBody] RegisterRequest request) => _authBusiness.Register(request);
     }
 }

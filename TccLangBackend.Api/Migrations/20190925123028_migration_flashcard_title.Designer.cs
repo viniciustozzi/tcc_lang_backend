@@ -5,9 +5,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using TccLangBackend.Api;
 using TccLangBackend.DB;
 
-namespace TccLangBackend.DB.Migrations
+namespace TccLangBackend.Api.Migrations
 {
     [DbContext(typeof(TccDbContext))]
     [Migration("20190925123028_migration_flashcard_title")]

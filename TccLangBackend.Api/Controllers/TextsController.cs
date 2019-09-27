@@ -1,26 +1,27 @@
-using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TccLangBackend.Api.Business;
-using TccLangBackend.DB;
+using TccLangBackend.Api.Controllers.Requests;
+using TccLangBackend.Core.Text;
 
 namespace TccLangBackend.Api.Controllers
 {
     [Route("api/texts")]
     [ApiController]
-    public class TextController : ControllerBase
+    public class TextController : UtilControllerBase
     {
-        private readonly TextsBusiness _textsBusiness;
+        private readonly TextBusiness _textBusiness;
 
-        public TextController(TextsBusiness textsBusiness) => _textsBusiness = textsBusiness;
+        public TextController(TextBusiness textBusiness) => _textBusiness = textBusiness;
 
         [HttpGet]
-        public IEnumerable GetTexts() => _textsBusiness.GetTexts();
+        public IEnumerable<ModelText> GetTexts() => _textBusiness.GetAll(UserId);
 
         [HttpGet("{id}")]
-        public Task<Text> GetText(int id) => _textsBusiness.GetText(id);
+        public Task<ModelText> GetText(int id) => _textBusiness.GetAsync(UserId, id);
 
         [HttpPost]
-        public Task<Text> SaveText([FromBody] TextRequest textRequest) => _textsBusiness.SaveText(textRequest);
+        public Task SaveText([FromBody] TextRequest textRequest) =>
+            _textBusiness.CreateAsync(new CreateText(textRequest.Words, UserId, textRequest.Title));
     }
 }
