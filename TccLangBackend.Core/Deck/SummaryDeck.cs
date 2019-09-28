@@ -1,8 +1,8 @@
 namespace TccLangBackend.Core.Deck
 {
-    public class ModelDeck
+    public class SummaryDeck
     {
-        public ModelDeck(int id, string name, int? textId)
+        public SummaryDeck(int id, string name, int? textId)
         {
             Id = id;
             Name = name;

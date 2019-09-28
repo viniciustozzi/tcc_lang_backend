@@ -12,10 +12,11 @@ namespace TccLangBackend.Core.Deck
         public Task CreateAsync(CreateDeck createDeck) => _deckRepository.CreateAsync(createDeck);
 
 
-        public IEnumerable<ModelDeck> GetAll(int userId) => _deckRepository.GetAll(userId);
+        public IEnumerable<SummaryDeck> GetAll(int userId) => _deckRepository.GetAll(userId);
 
-        public Task<ModelDeck> GetAsync(int userId, int deckId) => _deckRepository.GetAsync(userId, deckId);
+        public Task<DetailedDeck> GetAsync(int userId, int deckId) => _deckRepository.GetAsync(userId, deckId);
 
-        public Task<ModelDeck> GetByTextIdAsync(int userId, int textId) => _deckRepository.GetByTextIdAsync(userId, textId);
+        public Task<DetailedDeck> GetByTextIdAsync(int userId, int textId) =>
+            _deckRepository.GetByTextIdAsync(userId, textId);
     }
 }

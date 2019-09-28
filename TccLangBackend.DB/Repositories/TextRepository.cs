@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using TccLangBackend.Core.Deck;
+using TccLangBackend.Core.Flashcard;
 using TccLangBackend.Core.Text;
 
 namespace TccLangBackend.DB.Repositories
@@ -12,16 +14,35 @@ namespace TccLangBackend.DB.Repositories
 
         public TextRepository(TccDbContext dbContext) => _dbContext = dbContext;
 
-        public IEnumerable<ModelText> GetAll(int userId) =>
+        public IEnumerable<SummaryText> GetAll(int userId) =>
             _dbContext.Texts
                 .Where(x => x.UserId == userId)
-                .Select(x => new ModelText(x.Id, x.Title, x.Words));
+                .Select(x => new SummaryText(x.Id, x.Title, x.Words));
 
-        public Task<ModelText> GetAsync(int userId, int textId) =>
-            _dbContext.Texts
-                .Where(x => x.UserId == userId && x.Id == textId)
-                .Select(x => new ModelText(x.Id, x.Title, x.Words))
+        public async Task<DetailedText> GetAsync(int userId, int textId)
+        {
+            var queryable = _dbContext.Texts
+                .Include(x => x.Deck)
+                .Where(x => x.UserId == userId && x.Id == textId);
+
+            var hasDeck = await _dbContext.Texts
+                .Where(x => x.Id == textId)
+                .Select(x => x.DeckId.HasValue)
                 .FirstOrDefaultAsync();
+
+            if (hasDeck)
+                return await queryable
+                    .Include(x => x.Deck)
+                    .ThenInclude(x => x.Flashcards)
+                    .Select(x => new DetailedText(x.Id, x.Title, x.Words,
+                        new DetailedDeck(x.DeckId.Value, x.Deck.Name, x.Id,
+                            x.Deck.Flashcards.Select(y => new ModelFlashcard(y.Id, y.Title)))))
+                    .FirstOrDefaultAsync();
+
+            return await queryable
+                .Select(x => new DetailedText(x.Id, x.Title, x.Words, null))
+                .FirstOrDefaultAsync();
+        }
 
         public Task CreateAsync(CreateText createText)
         {

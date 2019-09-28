@@ -5,8 +5,8 @@ namespace TccLangBackend.Core.Text
 {
     public interface ITextRepository
     {
-        IEnumerable<ModelText> GetAll(int userId);
-        Task<ModelText> GetAsync(int userId, int textId);
+        IEnumerable<SummaryText> GetAll(int userId);
+        Task<DetailedText> GetAsync(int userId, int textId);
         Task CreateAsync(CreateText createText);
     }
 }

@@ -7,9 +7,9 @@ namespace TccLangBackend.Core.Deck
     {
         Task CreateAsync(CreateDeck createDeck);
 
-        IEnumerable<ModelDeck> GetAll(int userId);
+        IEnumerable<SummaryDeck> GetAll(int userId);
 
-        Task<ModelDeck> GetAsync(int userId, int deckId);
-        Task<ModelDeck> GetByTextIdAsync(int userId, int textId);
+        Task<DetailedDeck> GetAsync(int userId, int deckId);
+        Task<DetailedDeck> GetByTextIdAsync(int userId, int textId);
     }
 }

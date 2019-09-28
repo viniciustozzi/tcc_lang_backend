@@ -21,14 +21,14 @@ namespace TccLangBackend.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ModelDeck> GetAll() => _deckBusiness.GetAll(UserId);
+        public IEnumerable<SummaryDeck> GetAll() => _deckBusiness.GetAll(UserId);
 
         [HttpPost]
         public Task Create([FromBody] CreateDeckRequest createDeckRequest) =>
             _deckBusiness.CreateAsync(new CreateDeck(UserId, createDeckRequest.Name, createDeckRequest.TextId));
 
         [HttpGet("{deckId}")]
-        public Task<ModelDeck> GetAsync(int deckId) => _deckBusiness.GetAsync(UserId, deckId);
+        public Task<DetailedDeck> GetAsync(int deckId) => _deckBusiness.GetAsync(UserId, deckId);
 
         [HttpGet("{deckId}/flashcards")]
         public IEnumerable<ModelFlashcard> GetFlashcards(int deckId) =>

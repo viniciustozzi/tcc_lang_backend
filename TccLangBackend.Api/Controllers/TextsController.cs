@@ -11,8 +11,8 @@ namespace TccLangBackend.Api.Controllers
     [ApiController]
     public class TextController : UtilControllerBase
     {
-        private readonly TextBusiness _textBusiness;
         private readonly DeckBusiness _deckBusiness;
+        private readonly TextBusiness _textBusiness;
 
         public TextController(TextBusiness textBusiness, DeckBusiness deckBusiness)
         {
@@ -21,17 +21,13 @@ namespace TccLangBackend.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ModelText> GetTexts() => _textBusiness.GetAll(UserId);
+        public IEnumerable<SummaryText> GetTexts() => _textBusiness.GetAll(UserId);
 
         [HttpPost]
         public Task SaveText([FromBody] CreateTextRequest createTextRequest) =>
             _textBusiness.CreateAsync(new CreateText(createTextRequest.Words, UserId, createTextRequest.Title));
 
-        [HttpGet("{id}")]
-        public Task<ModelText> GetText(int id) => _textBusiness.GetAsync(UserId, id);
-
-
-        [HttpGet("{textId}/deck")]
-        public Task<ModelDeck> GetDeck(int textId) => _deckBusiness.GetByTextIdAsync(UserId, textId);
+        [HttpGet("{textId}")]
+        public Task<DetailedText> GetText(int textId) => _textBusiness.GetAsync(UserId, textId);
     }
 }
