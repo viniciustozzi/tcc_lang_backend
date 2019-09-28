@@ -17,7 +17,8 @@ namespace TccLangBackend.DB.Repositories
             _dbContext.Decks.Add(new Deck
             {
                 Name = createDeck.Name,
-                UserId = createDeck.UserId
+                UserId = createDeck.UserId,
+                TextId = createDeck.TextId
             });
 
             return _dbContext.SaveChangesAsync();
@@ -26,12 +27,18 @@ namespace TccLangBackend.DB.Repositories
         public IEnumerable<ModelDeck> GetAll(int userId) =>
             _dbContext.Decks
                 .Where(x => x.UserId == userId)
-                .Select(x => new ModelDeck(x.Id, x.Name));
+                .Select(x => new ModelDeck(x.Id, x.Name, x.TextId));
 
         public Task<ModelDeck> GetAsync(int userId, int deckId) =>
             _dbContext.Decks
                 .Where(x => x.UserId == userId && x.Id == deckId)
-                .Select(x => new ModelDeck(x.Id, x.Name))
+                .Select(x => new ModelDeck(x.Id, x.Name, x.TextId))
+                .FirstOrDefaultAsync();
+
+        public Task<ModelDeck> GetByTextIdAsync(int userId, int textId) =>
+            _dbContext.Decks
+                .Where(x => x.UserId == userId && x.TextId == textId)
+                .Select(x => new ModelDeck(x.Id, x.Name, textId))
                 .FirstOrDefaultAsync();
     }
 }

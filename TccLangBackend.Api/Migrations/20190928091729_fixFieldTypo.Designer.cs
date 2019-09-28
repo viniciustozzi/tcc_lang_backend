@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TccLangBackend.DB;
@@ -9,9 +10,10 @@ using TccLangBackend.DB;
 namespace TccLangBackend.Api.Migrations
 {
     [DbContext(typeof(TccDbContext))]
-    partial class TccDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190928091729_fixFieldTypo")]
+    partial class fixFieldTypo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +34,7 @@ namespace TccLangBackend.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TextId")
-                        .IsUnique();
+                    b.HasIndex("TextId");
 
                     b.HasIndex("UserId");
 
@@ -60,8 +61,6 @@ namespace TccLangBackend.Api.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int?>("DeckId");
 
                     b.Property<string>("Title");
 
@@ -104,8 +103,8 @@ namespace TccLangBackend.Api.Migrations
             modelBuilder.Entity("TccLangBackend.DB.Deck", b =>
                 {
                     b.HasOne("TccLangBackend.DB.Text", "Text")
-                        .WithOne("Deck")
-                        .HasForeignKey("TccLangBackend.DB.Deck", "TextId");
+                        .WithMany("Decks")
+                        .HasForeignKey("TextId");
 
                     b.HasOne("TccLangBackend.DB.User", "User")
                         .WithMany("Decks")

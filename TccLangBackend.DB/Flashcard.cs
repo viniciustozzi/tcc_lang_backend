@@ -10,7 +10,7 @@ namespace TccLangBackend.DB
 
         public string Title { get; set; }
 
-        public int DockerId { get; set; }
+        public int DeckId { get; set; }
 
         public Deck Deck { get; set; }
     }

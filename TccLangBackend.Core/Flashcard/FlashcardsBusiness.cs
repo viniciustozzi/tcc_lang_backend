@@ -10,10 +10,11 @@ namespace TccLangBackend.Core.Flashcard
         public FlashcardsBusiness(IFlashcardRepository flashcardRepository) =>
             _flashcardRepository = flashcardRepository;
 
-        public IEnumerable<ModelFlashcard> GetFlashcards(int userId) => _flashcardRepository.GetAll(userId);
+        public IEnumerable<ModelFlashcard> GetFlashcards(int userId, int deckId) =>
+            _flashcardRepository.GetAll(userId, deckId);
 
-        public Task<ModelFlashcard> GetFlashcard(int userId, int flashcardId) =>
-            _flashcardRepository.FindAsync(userId, flashcardId);
+        public Task<ModelFlashcard> GetFlashcard(int userId, int deckId, int flashcardId) =>
+            _flashcardRepository.FindAsync(userId, deckId, flashcardId);
 
         public Task Create(CreateFlashcard createFlashcard) => _flashcardRepository.CreateAsync(createFlashcard);
     }

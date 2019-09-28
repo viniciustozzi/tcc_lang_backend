@@ -5,9 +5,9 @@ namespace TccLangBackend.Core.Flashcard
 {
     public interface IFlashcardRepository
     {
-        IEnumerable<ModelFlashcard> GetAll(int userId);
+        IEnumerable<ModelFlashcard> GetAll(int userId, int deckId);
 
-        Task<ModelFlashcard> FindAsync(int userId, int flashcardId);
+        Task<ModelFlashcard> FindAsync(int userId, int deckId, int flashcardId);
 
         Task CreateAsync(CreateFlashcard createFlashcard);
     }
