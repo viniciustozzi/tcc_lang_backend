@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TccLangBackend.Core", "TccL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TccLangBackend.DB", "TccLangBackend.DB\TccLangBackend.DB.csproj", "{4990D936-B09A-4635-9B1E-2F9E4C5CCE29}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{9FAA0582-9240-456C-BA79-179660D346F4}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -22,6 +24,8 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9FAA0582-9240-456C-BA79-179660D346F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FAA0582-9240-456C-BA79-179660D346F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1C52C6D1-156F-43A5-B794-0FF0E4F41DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C52C6D1-156F-43A5-B794-0FF0E4F41DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C52C6D1-156F-43A5-B794-0FF0E4F41DFB}.Debug|x64.ActiveCfg = Debug|Any CPU
