@@ -24,7 +24,7 @@ namespace TccLangBackend.Api.Controllers
         public IEnumerable<SummaryDeck> GetAll() => _deckBusiness.GetAll(UserId);
 
         [HttpPost]
-        public Task Create([FromBody] CreateDeckRequest createDeckRequest) =>
+        public Task<SummaryDeck> Create([FromBody] CreateDeckRequest createDeckRequest) =>
             _deckBusiness.CreateAsync(new CreateDeck(UserId, createDeckRequest.Name, createDeckRequest.TextId));
 
         [HttpGet("{deckId}")]

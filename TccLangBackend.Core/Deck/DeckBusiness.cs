@@ -9,7 +9,7 @@ namespace TccLangBackend.Core.Deck
 
         public DeckBusiness(IDeckRepository deckRepository) => _deckRepository = deckRepository;
 
-        public Task CreateAsync(CreateDeck createDeck) => _deckRepository.CreateAsync(createDeck);
+        public Task<SummaryDeck> CreateAsync(CreateDeck createDeck) => _deckRepository.CreateAsync(createDeck);
 
 
         public IEnumerable<SummaryDeck> GetAll(int userId) => _deckRepository.GetAll(userId);

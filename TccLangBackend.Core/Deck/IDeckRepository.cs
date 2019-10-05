@@ -5,7 +5,7 @@ namespace TccLangBackend.Core.Deck
 {
     public interface IDeckRepository
     {
-        Task CreateAsync(CreateDeck createDeck);
+        Task<SummaryDeck> CreateAsync(CreateDeck createDeck);
 
         IEnumerable<SummaryDeck> GetAll(int userId);
 

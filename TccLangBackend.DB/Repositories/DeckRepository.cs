@@ -13,7 +13,7 @@ namespace TccLangBackend.DB.Repositories
 
         public DeckRepository(TccDbContext dbContext) => _dbContext = dbContext;
 
-        public async Task CreateAsync(CreateDeck createDeck)
+        public async Task<SummaryDeck> CreateAsync(CreateDeck createDeck)
         {
             var deck = new Deck
             {
@@ -35,6 +35,8 @@ namespace TccLangBackend.DB.Repositories
                 entityEntry.Entity.DeckId = deck.Id;
                 await _dbContext.SaveChangesAsync();
             }
+
+            return new SummaryDeck(deck.Id, deck.Name, deck.TextId);
         }
 
         public IEnumerable<SummaryDeck> GetAll(int userId) =>
