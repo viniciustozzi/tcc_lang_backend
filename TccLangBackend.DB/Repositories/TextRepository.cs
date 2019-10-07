@@ -36,7 +36,7 @@ namespace TccLangBackend.DB.Repositories
                     .ThenInclude(x => x.Flashcards)
                     .Select(x => new DetailedText(x.Id, x.Title, x.Words,
                         new DetailedDeck(x.DeckId.Value, x.Deck.Name, x.Id,
-                            x.Deck.Flashcards.Select(y => new ModelFlashcard(y.Id, y.Title)))))
+                            x.Deck.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord)))))
                     .FirstOrDefaultAsync();
 
             return await queryable

@@ -2,13 +2,15 @@ namespace TccLangBackend.Core.Flashcard
 {
     public class ModelFlashcard
     {
-        public ModelFlashcard(int id, string title)
+        public ModelFlashcard(int id, string originalWord, string translatedWord)
         {
             Id = id;
-            Title = title;
+            OriginalWord = originalWord;
+            TranslatedWord = translatedWord;
         }
 
         public int Id { get; }
-        public string Title { get; }
+        public string OriginalWord { get; }
+        public string TranslatedWord { get; }
     }
 }

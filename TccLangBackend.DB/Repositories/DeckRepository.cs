@@ -49,7 +49,7 @@ namespace TccLangBackend.DB.Repositories
                 .Include(x => x.Flashcards)
                 .Where(x => x.UserId == userId && x.Id == deckId)
                 .Select(x => new DetailedDeck(x.Id, x.Name, x.TextId,
-                    x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.Title))))
+                    x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord))))
                 .FirstOrDefaultAsync();
 
         public Task<DetailedDeck> GetByTextIdAsync(int userId, int textId) =>
@@ -57,7 +57,7 @@ namespace TccLangBackend.DB.Repositories
                 .Include(x => x.Flashcards)
                 .Where(x => x.UserId == userId && x.TextId == textId)
                 .Select(x => new DetailedDeck(x.Id, x.Name, x.TextId,
-                    x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.Title))))
+                    x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord))))
                 .FirstOrDefaultAsync();
     }
 }

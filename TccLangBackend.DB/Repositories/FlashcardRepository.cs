@@ -16,24 +16,31 @@ namespace TccLangBackend.DB.Repositories
             _dbContext.Flashcards
                 .Include(x => x.Deck)
                 .Where(x => x.Deck.UserId == userId && x.DeckId == deckId)
-                .Select(x => new ModelFlashcard(x.Id, x.Title));
+                .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord));
 
         public Task<ModelFlashcard> FindAsync(int userId, int deckId, int flashcardId) =>
             _dbContext.Flashcards
                 .Include(x => x.Deck)
                 .Where(x => x.Id == flashcardId && x.DeckId == deckId && x.Deck.UserId == userId)
-                .Select(x => new ModelFlashcard(x.Id, x.Title))
+                .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord))
                 .FirstOrDefaultAsync();
 
-        public Task CreateAsync(CreateFlashcard createFlashcard)
+        public async Task<ModelFlashcard> CreateAsync(CreateFlashcard createFlashcard)
         {
-            _dbContext.Flashcards.Add(new Flashcard
+            var flashcard = new Flashcard
             {
                 DeckId = createFlashcard.DeckId,
-                Title = createFlashcard.Title
-            });
+                OriginalWord = createFlashcard.OriginalWord,
+                TranslatedWord = createFlashcard.TranslatedWord
+            };
 
-            return _dbContext.SaveChangesAsync();
+            _dbContext.Flashcards.Add(flashcard);
+
+            await _dbContext.SaveChangesAsync();
+
+            return new ModelFlashcard(flashcard.Id, flashcard.OriginalWord, flashcard.TranslatedWord);
         }
+        
+        //TODO Criar metodo para deletar um flashcard de um deck
     }
 }

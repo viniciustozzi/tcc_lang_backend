@@ -47,7 +47,9 @@ namespace TccLangBackend.Api.Migrations
 
                     b.Property<int>("DeckId");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("OriginalWord");
+
+                    b.Property<string>("TranslatedWord");
 
                     b.HasKey("Id");
 

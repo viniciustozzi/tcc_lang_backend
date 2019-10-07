@@ -16,6 +16,7 @@ namespace TccLangBackend.Core.Flashcard
         public Task<ModelFlashcard> GetFlashcard(int userId, int deckId, int flashcardId) =>
             _flashcardRepository.FindAsync(userId, deckId, flashcardId);
 
-        public Task Create(CreateFlashcard createFlashcard) => _flashcardRepository.CreateAsync(createFlashcard);
+        public Task<ModelFlashcard> Create(CreateFlashcard createFlashcard) =>
+            _flashcardRepository.CreateAsync(createFlashcard);
     }
 }

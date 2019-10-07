@@ -25,7 +25,7 @@ namespace TccLangBackend.Api.Controllers
 
         [HttpPost]
         public Task<SummaryDeck> Create([FromBody] CreateDeckRequest createDeckRequest) =>
-            _deckBusiness.CreateAsync(new CreateDeck(UserId, createDeckRequest.Name, createDeckRequest.TextId));
+            _deckBusiness.CreateAsync(new CreateDeck(UserId, createDeckRequest.Title, createDeckRequest.TextId));
 
         [HttpGet("{deckId}")]
         public Task<DetailedDeck> GetAsync(int deckId) => _deckBusiness.GetAsync(UserId, deckId);
@@ -35,8 +35,9 @@ namespace TccLangBackend.Api.Controllers
             _flashcardsBusiness.GetFlashcards(UserId, deckId);
 
         [HttpPost("{deckId}/flashcards")]
-        public Task CreateFlashcard(int deckId, [FromBody] CreateFlashcardRequest createFlashcardRequest) =>
-            _flashcardsBusiness.Create(new CreateFlashcard(UserId, deckId, createFlashcardRequest.Title));
+        public Task<ModelFlashcard> CreateFlashcard(int deckId, [FromBody] CreateFlashcardRequest createFlashcardRequest) =>
+            _flashcardsBusiness.Create(new CreateFlashcard(UserId, deckId, createFlashcardRequest.OriginalText,
+                createFlashcardRequest.TranslatedText));
 
         [HttpGet("{deckId}/flashcards/{flashcardId}")]
         public Task<ModelFlashcard> GetFlashcard(int deckId, int flashcardId) =>
