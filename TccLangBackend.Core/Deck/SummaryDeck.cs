@@ -2,15 +2,15 @@ namespace TccLangBackend.Core.Deck
 {
     public class SummaryDeck
     {
-        public SummaryDeck(int id, string name, int? textId)
+        public SummaryDeck(int id, string title, int? textId)
         {
             Id = id;
-            Name = name;
+            Title = title;
             TextId = textId;
         }
 
         public int Id { get; }
-        public string Name { get; }
+        public string Title { get; }
         public int? TextId { get; }
     }
 }
