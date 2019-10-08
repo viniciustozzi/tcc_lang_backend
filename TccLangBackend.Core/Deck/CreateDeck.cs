@@ -2,15 +2,15 @@ namespace TccLangBackend.Core.Deck
 {
     public class CreateDeck
     {
-        public CreateDeck(int userId, string name, int? textId)
+        public CreateDeck(int userId, string title, int? textId)
         {
             UserId = userId;
-            Name = name;
+            Title = title;
             TextId = textId;
         }
 
         public int UserId { get; }
-        public string Name { get; }
+        public string Title { get; }
         public int? TextId { get; }
     }
 }

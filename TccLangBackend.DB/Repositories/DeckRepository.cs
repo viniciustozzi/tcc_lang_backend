@@ -17,7 +17,7 @@ namespace TccLangBackend.DB.Repositories
         {
             var deck = new Deck
             {
-                Name = createDeck.Name,
+                Title = createDeck.Title,
                 UserId = createDeck.UserId,
                 TextId = createDeck.TextId
             };
@@ -36,19 +36,19 @@ namespace TccLangBackend.DB.Repositories
                 await _dbContext.SaveChangesAsync();
             }
 
-            return new SummaryDeck(deck.Id, deck.Name, deck.TextId);
+            return new SummaryDeck(deck.Id, deck.Title, deck.TextId);
         }
 
         public IEnumerable<SummaryDeck> GetAll(int userId) =>
             _dbContext.Decks
                 .Where(x => x.UserId == userId)
-                .Select(x => new SummaryDeck(x.Id, x.Name, x.TextId));
+                .Select(x => new SummaryDeck(x.Id, x.Title, x.TextId));
 
         public Task<DetailedDeck> GetAsync(int userId, int deckId) =>
             _dbContext.Decks
                 .Include(x => x.Flashcards)
                 .Where(x => x.UserId == userId && x.Id == deckId)
-                .Select(x => new DetailedDeck(x.Id, x.Name, x.TextId,
+                .Select(x => new DetailedDeck(x.Id, x.Title, x.TextId,
                     x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord))))
                 .FirstOrDefaultAsync();
 
@@ -56,7 +56,7 @@ namespace TccLangBackend.DB.Repositories
             _dbContext.Decks
                 .Include(x => x.Flashcards)
                 .Where(x => x.UserId == userId && x.TextId == textId)
-                .Select(x => new DetailedDeck(x.Id, x.Name, x.TextId,
+                .Select(x => new DetailedDeck(x.Id, x.Title, x.TextId,
                     x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord))))
                 .FirstOrDefaultAsync();
     }
