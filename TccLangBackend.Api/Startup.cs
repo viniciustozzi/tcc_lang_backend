@@ -63,7 +63,7 @@ namespace TccLangBackend.Api
                 {
                     c.BaseAddress =
                         new Uri(
-                            "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=en&to=de");
+                            "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en&from=de");
 
                     var apiKey = Configuration.GetValue<string>("API_KEY");
                     c.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
