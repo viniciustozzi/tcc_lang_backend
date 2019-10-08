@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TccLangBackend.Core.Flashcard;
+using Z.EntityFramework.Plus;
 
 namespace TccLangBackend.DB.Repositories
 {
@@ -40,7 +41,11 @@ namespace TccLangBackend.DB.Repositories
 
             return new ModelFlashcard(flashcard.Id, flashcard.OriginalWord, flashcard.TranslatedWord);
         }
-        
-        //TODO Criar metodo para deletar um flashcard de um deck
+
+        public Task DeleteAsync(int userId, int deckId, int flashcardId) =>
+            _dbContext.Flashcards
+                .Include(x => x.Deck)
+                .Where(x => x.Id == flashcardId && x.DeckId == deckId && x.Deck.UserId == userId)
+                .DeleteAsync();
     }
 }

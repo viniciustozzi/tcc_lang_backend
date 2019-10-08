@@ -43,5 +43,9 @@ namespace TccLangBackend.Api.Controllers
         [HttpGet("{deckId}/flashcards/{flashcardId}")]
         public Task<ModelFlashcard> GetFlashcard(int deckId, int flashcardId) =>
             _flashcardsBusiness.GetFlashcard(UserId, deckId, flashcardId);
+
+        [HttpDelete("{deckId}/flashcards/{flashcardId}")]
+        public Task DeleteCard(int deckId, int flashcardId) =>
+            _flashcardsBusiness.DeleteAsync(UserId, deckId, flashcardId);
     }
 }

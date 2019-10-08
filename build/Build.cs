@@ -93,5 +93,12 @@ class Build : NukeBuild
                 .SetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", "Development"));
         });
 
+    Target Migrate => _ => _
+        .DependsOn(Compile)
+        .Executes(() =>
+        {
+            DotNet("ef database update", Solution.GetProject("TccLangBackend.Api")?.Directory);
+        });
+
     public static int Main() => Execute<Build>(x => x.Compile);
 }
