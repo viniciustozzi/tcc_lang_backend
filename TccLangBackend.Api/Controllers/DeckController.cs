@@ -35,9 +35,10 @@ namespace TccLangBackend.Api.Controllers
             _flashcardsBusiness.GetFlashcards(UserId, deckId);
 
         [HttpPost("{deckId}/flashcards")]
-        public Task<ModelFlashcard> CreateFlashcard(int deckId, [FromBody] CreateFlashcardRequest createFlashcardRequest) =>
-            _flashcardsBusiness.Create(new CreateFlashcard(UserId, deckId, createFlashcardRequest.OriginalText,
-                createFlashcardRequest.TranslatedText));
+        public Task<ModelFlashcard> CreateFlashcard(int deckId,
+            [FromBody] CreateFlashcardRequest createFlashcardRequest) =>
+            _flashcardsBusiness.Create(new CreateFlashcard(UserId, deckId, createFlashcardRequest.OriginalWord,
+                createFlashcardRequest.TranslatedWord));
 
         [HttpGet("{deckId}/flashcards/{flashcardId}")]
         public Task<ModelFlashcard> GetFlashcard(int deckId, int flashcardId) =>
