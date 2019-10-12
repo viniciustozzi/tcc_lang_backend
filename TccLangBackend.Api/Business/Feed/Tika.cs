@@ -9,17 +9,14 @@ namespace TccLangBackend.Api.Business.Feed
     {
         private readonly string _url;
 
-        public Tika(string url)
-        {
-            _url = url;
-        }
+        public Tika(string url) => _url = url;
 
         public Task<string> GetMainTextAsync()
         {
             var location = Assembly.GetEntryAssembly()?.Location;
             var fullPath = Path.GetDirectoryName(location);
 
-            var process = new Process
+            using (var process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
@@ -29,12 +26,12 @@ namespace TccLangBackend.Api.Business.Feed
                     UseShellExecute = false,
                     CreateNoWindow = true
                 }
-            };
-
-            process.Start();
-            process.WaitForExit();
-            return process.StandardOutput.ReadToEndAsync();
-
+            })
+            {
+                process.Start();
+                process.WaitForExit();
+                return process.StandardOutput.ReadToEndAsync();
+            }
         }
     }
 }

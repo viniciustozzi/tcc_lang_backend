@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -46,14 +47,14 @@ namespace TccLangBackend.Api.Business.Feed
             var xmlContent = await GetXmlContent(url);
             var items = ParseXmlAtomFeed(xmlContent);
 
-            var posts = new List<Post>();
+            var posts = new ConcurrentBag<Post>();
 
-            foreach (var item in items)
+            Parallel.ForEach(items, async item =>
             {
                 var tika = new Tika(item.Url);
                 var text = await tika.GetMainTextAsync();
                 posts.Add(new Post(item.Title, text, item.PublishDate.Date, item.Url));
-            }
+            });
 
             return posts;
         }
