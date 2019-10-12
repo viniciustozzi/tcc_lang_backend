@@ -9,7 +9,7 @@ namespace TccLangBackend.Core.Text
 
         public TextBusiness(ITextRepository textRepository) => _textRepository = textRepository;
 
-        public IEnumerable<SummaryText> GetAll(int userId) => _textRepository.GetAll(userId);
+        public IEnumerable<SummaryText> GetAll() => _textRepository.GetAll();
 
         public Task<DetailedText> GetAsync(int userId, int textId) => _textRepository.GetAsync(userId, textId);
 

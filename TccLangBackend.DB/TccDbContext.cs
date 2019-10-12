@@ -11,7 +11,6 @@ namespace TccLangBackend.DB
         public DbSet<User> Users { get; set; }
         public DbSet<Text> Texts { get; set; }
         public DbSet<Flashcard> Flashcards { get; set; }
-
         public DbSet<Deck> Decks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -24,25 +23,15 @@ namespace TccLangBackend.DB
                 .WithOne(x => x.User)
                 .HasForeignKey(x => x.UserId);
 
-            modelBuilder.Entity<User>()
-                .HasMany(x => x.Texts)
-                .WithOne(x => x.User)
-                .HasForeignKey(x => x.UserId);
-
             modelBuilder.Entity<Deck>()
                 .HasMany(x => x.Flashcards)
                 .WithOne(x => x.Deck)
                 .HasForeignKey(x => x.DeckId);
 
-            modelBuilder.Entity<Deck>()
-                .HasOne(x => x.Text)
-                .WithOne(x => x.Deck)
-                .HasForeignKey<Text>(x => x.DeckId);
-
             modelBuilder.Entity<Text>()
-                .HasOne(x => x.Deck)
+                .HasMany(x => x.Decks)
                 .WithOne(x => x.Text)
-                .HasForeignKey<Deck>(x => x.TextId);
+                .HasForeignKey(x => x.TextId);
         }
     }
 }

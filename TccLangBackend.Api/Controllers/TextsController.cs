@@ -6,7 +6,6 @@ using TccLangBackend.Api.Business.Feed;
 using TccLangBackend.Api.Controllers.Requests;
 using TccLangBackend.Core.Deck;
 using TccLangBackend.Core.Text;
-using TccLangBackend.News;
 using Post = TccLangBackend.Api.Business.Feed.Post;
 
 namespace TccLangBackend.Api.Controllers
@@ -25,19 +24,26 @@ namespace TccLangBackend.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SummaryText> GetTexts() => _textBusiness.GetAll(UserId);
+        public IEnumerable<SummaryText> GetTexts() => _textBusiness.GetAll();
 
         [HttpPost]
         public Task SaveText([FromBody] CreateTextRequest createTextRequest) =>
-            _textBusiness.CreateAsync(new CreateText(createTextRequest.Words, UserId, createTextRequest.Title));
+            _textBusiness.CreateAsync(new CreateText(createTextRequest.Words, createTextRequest.Title));
 
         [HttpGet("{textId}")]
         public Task<DetailedText> GetText(int textId) => _textBusiness.GetAsync(UserId, textId);
 
-        [HttpGet("content"), AllowAnonymous]
-        public Task<IEnumerable<Post>> GetMainText([FromQuery] string url)
+        [HttpPost("feed"), AllowAnonymous]
+        public async Task<IEnumerable<Post>> Feed([FromQuery] string url)
         {
-            return _feedBusiness.Retrive(url);
+            var posts = await _feedBusiness.RetriveAsync(url);
+
+            foreach (var post in posts)
+            {
+                await _textBusiness.CreateAsync(new CreateText(post.MainContent, post.Title));
+            }
+
+            return posts;
         }
     }
 }

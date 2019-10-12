@@ -14,33 +14,33 @@ namespace TccLangBackend.DB.Repositories
 
         public TextRepository(TccDbContext dbContext) => _dbContext = dbContext;
 
-        public IEnumerable<SummaryText> GetAll(int userId) =>
+        public IEnumerable<SummaryText> GetAll() =>
             _dbContext.Texts
-                .Where(x => x.UserId == userId)
                 .Select(x => new SummaryText(x.Id, x.Title, x.Words));
 
         public async Task<DetailedText> GetAsync(int userId, int textId)
         {
             var queryable = _dbContext.Texts
-                .Include(x => x.Deck)
-                .Where(x => x.UserId == userId && x.Id == textId);
+                .Where(x => x.Id == textId);
 
             var hasDeck = await _dbContext.Texts
                 .Where(x => x.Id == textId)
-                .Select(x => x.DeckId.HasValue)
+                .Select(x => x.Decks.Any(y => y.UserId == userId))
                 .FirstOrDefaultAsync();
 
-            if (hasDeck)
+
+            if (!hasDeck)
                 return await queryable
-                    .Include(x => x.Deck)
-                    .ThenInclude(x => x.Flashcards)
-                    .Select(x => new DetailedText(x.Id, x.Title, x.Words,
-                        new DetailedDeck(x.DeckId.Value, x.Deck.Title, x.Id,
-                            x.Deck.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord)))))
+                    .Select(x => new DetailedText(x.Id, x.Title, x.Words, null))
                     .FirstOrDefaultAsync();
 
             return await queryable
-                .Select(x => new DetailedText(x.Id, x.Title, x.Words, null))
+                .Include(x => x.Decks)
+                .ThenInclude(x => x.Flashcards)
+                .Select(x => new DetailedText(x.Id, x.Title, x.Words, x.Decks.Select(z => new DetailedDeck(z.Id,
+                        z.Title, z.TextId,
+                        z.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord))))
+                    .First()))
                 .FirstOrDefaultAsync();
         }
 
@@ -49,7 +49,6 @@ namespace TccLangBackend.DB.Repositories
             _dbContext.Texts.Add(new Text
             {
                 Title = createText.Title,
-                UserId = createText.UserId,
                 Words = createText.Words
             });
 

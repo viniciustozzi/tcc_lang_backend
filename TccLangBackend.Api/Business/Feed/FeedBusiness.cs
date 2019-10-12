@@ -41,7 +41,7 @@ namespace TccLangBackend.Api.Business.Feed
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IEnumerable<Post>> Retrive(string url)
+        public async Task<IEnumerable<Post>> RetriveAsync(string url)
         {
             var xmlContent = await GetXmlContent(url);
             var items = ParseXmlAtomFeed(xmlContent);

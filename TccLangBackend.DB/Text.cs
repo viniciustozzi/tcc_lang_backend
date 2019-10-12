@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TccLangBackend.DB
@@ -11,12 +13,6 @@ namespace TccLangBackend.DB
 
         public string Words { get; set; }
 
-        public int UserId { get; set; }
-
-        public int? DeckId { get; set; }
-
-        public User User { get; set; }
-
-        public Deck Deck { get; set; }
+        public ICollection<Deck> Decks { get; set; }
     }
 }

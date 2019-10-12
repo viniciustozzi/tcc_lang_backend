@@ -24,18 +24,7 @@ namespace TccLangBackend.DB.Repositories
             _dbContext.Decks.Add(deck);
 
             await _dbContext.SaveChangesAsync();
-
-            if (createDeck.TextId.HasValue)
-            {
-                var entityEntry = _dbContext.Texts.Attach(new Text
-                {
-                    Id = createDeck.TextId.Value
-                });
-
-                entityEntry.Entity.DeckId = deck.Id;
-                await _dbContext.SaveChangesAsync();
-            }
-
+            
             return new SummaryDeck(deck.Id, deck.Title, deck.TextId);
         }
 
