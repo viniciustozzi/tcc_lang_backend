@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TccLangBackend.Api.Business.Feed;
 using TccLangBackend.Api.Controllers.Requests;
 using TccLangBackend.Core.Deck;
 using TccLangBackend.Core.Text;
+using TccLangBackend.News;
+using Post = TccLangBackend.Api.Business.Feed.Post;
 
 namespace TccLangBackend.Api.Controllers
 {
@@ -11,13 +15,13 @@ namespace TccLangBackend.Api.Controllers
     [ApiController]
     public class TextController : UtilControllerBase
     {
-        private readonly DeckBusiness _deckBusiness;
         private readonly TextBusiness _textBusiness;
+        private readonly FeedBusiness _feedBusiness;
 
-        public TextController(TextBusiness textBusiness, DeckBusiness deckBusiness)
+        public TextController(TextBusiness textBusiness, FeedBusiness feedBusiness)
         {
             _textBusiness = textBusiness;
-            _deckBusiness = deckBusiness;
+            _feedBusiness = feedBusiness;
         }
 
         [HttpGet]
@@ -29,5 +33,11 @@ namespace TccLangBackend.Api.Controllers
 
         [HttpGet("{textId}")]
         public Task<DetailedText> GetText(int textId) => _textBusiness.GetAsync(UserId, textId);
+
+        [HttpGet("content"), AllowAnonymous]
+        public Task<IEnumerable<Post>> GetMainText([FromQuery] string url)
+        {
+            return _feedBusiness.Retrive(url);
+        }
     }
 }

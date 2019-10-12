@@ -23,6 +23,13 @@
   <ItemGroup>
     <ProjectReference Include="..\TccLangBackend.Core\TccLangBackend.Core.csproj" />
     <ProjectReference Include="..\TccLangBackend.DB\TccLangBackend.DB.csproj" />
+    <ProjectReference Include="..\TccLangBackend.News\TccLangBackend.News.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Update="tika-app-1.22.jar">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
