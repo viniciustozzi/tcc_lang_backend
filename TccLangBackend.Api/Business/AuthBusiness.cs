@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using TccLangBackend.DB;
+using TccLangBackend.Framework.DB;
 
 namespace TccLangBackend.Api.Business
 {
@@ -82,8 +82,9 @@ namespace TccLangBackend.Api.Business
             };
         }
 
-        private JwtSecurityToken CreateJwtToken(User user) =>
-            new JwtSecurityToken(
+        private JwtSecurityToken CreateJwtToken(User user)
+        {
+            return new JwtSecurityToken(
                 _configuration["SiteUrl"],
                 _configuration["SiteUrl"],
                 GetUserClaims(user),
@@ -92,12 +93,15 @@ namespace TccLangBackend.Api.Business
                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JwtKey"])),
                     SecurityAlgorithms.HmacSha256)
             );
+        }
 
-        private static IEnumerable<Claim> GetUserClaims(User user) =>
-            new List<Claim>
+        private static IEnumerable<Claim> GetUserClaims(User user)
+        {
+            return new List<Claim>
             {
                 new Claim(ClaimTypes.Sid, user.Id.ToString())
             };
+        }
 
         public static void CreatePasswordHash(string rawPassword, out byte[] hashedPassword, out byte[] salt)
         {

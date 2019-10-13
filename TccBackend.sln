@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TccLangBackend.Api", "TccLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TccLangBackend.Core", "TccLangBackend.Core\TccLangBackend.Core.csproj", "{1B5EC4F8-AE11-4626-A53D-0564FE92FC5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TccLangBackend.DB", "TccLangBackend.DB\TccLangBackend.DB.csproj", "{4990D936-B09A-4635-9B1E-2F9E4C5CCE29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TccLangBackend.Framework", "TccLangBackend.Framework\TccLangBackend.Framework.csproj", "{4990D936-B09A-4635-9B1E-2F9E4C5CCE29}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{9FAA0582-9240-456C-BA79-179660D346F4}"
 EndProject

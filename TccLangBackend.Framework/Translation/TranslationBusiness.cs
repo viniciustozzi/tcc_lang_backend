@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace TccLangBackend.Api.Business
+namespace TccLangBackend.Framework.Translation
 {
     public class TranslationBusiness
     {

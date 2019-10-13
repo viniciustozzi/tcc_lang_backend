@@ -6,7 +6,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using TccLangBackend.Api;
-using TccLangBackend.DB;
+using TccLangBackend.Framework;
+using TccLangBackend.Framework.DB;
 
 namespace TccLangBackend.Api.Migrations
 {

@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace TccLangBackend.DB
+namespace TccLangBackend.Framework.DB
 {
     public class TccDbContext : DbContext
     {

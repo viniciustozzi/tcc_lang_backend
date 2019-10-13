@@ -6,17 +6,22 @@ using TccLangBackend.Core.Deck;
 using TccLangBackend.Core.Flashcard;
 using TccLangBackend.Core.Text;
 
-namespace TccLangBackend.DB.Repositories
+namespace TccLangBackend.Framework.DB.Repositories
 {
     public class TextRepository : ITextRepository
     {
         private readonly TccDbContext _dbContext;
 
-        public TextRepository(TccDbContext dbContext) => _dbContext = dbContext;
+        public TextRepository(TccDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-        public IEnumerable<SummaryText> GetAll() =>
-            _dbContext.Texts
+        public IEnumerable<SummaryText> GetAll()
+        {
+            return _dbContext.Texts
                 .Select(x => new SummaryText(x.Id, x.Title, x.Words));
+        }
 
         public async Task<DetailedText> GetAsync(int userId, int textId)
         {

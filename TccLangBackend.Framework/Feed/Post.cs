@@ -1,13 +1,10 @@
 using System;
 
-namespace TccLangBackend.Api.Business.Feed
+namespace TccLangBackend.Framework.Feed
 {
     public class Post
     {
         private readonly string _url;
-        public string Title { get; }
-        public string MainContent { get; }
-        public DateTime PostDate { get; }
 
         public Post(string title, string mainContent, DateTime postDate, string url)
         {
@@ -16,5 +13,9 @@ namespace TccLangBackend.Api.Business.Feed
             MainContent = mainContent;
             PostDate = postDate;
         }
+
+        public string Title { get; }
+        public string MainContent { get; }
+        public DateTime PostDate { get; }
     }
 }

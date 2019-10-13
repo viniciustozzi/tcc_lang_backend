@@ -21,31 +21,47 @@ namespace TccLangBackend.Api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SummaryDeck> GetAll() => _deckBusiness.GetAll(UserId);
+        public IEnumerable<SummaryDeck> GetAll()
+        {
+            return _deckBusiness.GetAll(UserId);
+        }
 
         [HttpPost]
-        public Task<SummaryDeck> Create([FromBody] CreateDeckRequest createDeckRequest) =>
-            _deckBusiness.CreateAsync(new CreateDeck(UserId, createDeckRequest.Title, createDeckRequest.TextId));
+        public Task<SummaryDeck> Create([FromBody] CreateDeckRequest createDeckRequest)
+        {
+            return _deckBusiness.CreateAsync(new CreateDeck(UserId, createDeckRequest.Title, createDeckRequest.TextId));
+        }
 
         [HttpGet("{deckId}")]
-        public Task<DetailedDeck> GetAsync(int deckId) => _deckBusiness.GetAsync(UserId, deckId);
+        public Task<DetailedDeck> GetAsync(int deckId)
+        {
+            return _deckBusiness.GetAsync(UserId, deckId);
+        }
 
         [HttpGet("{deckId}/flashcards")]
-        public IEnumerable<ModelFlashcard> GetFlashcards(int deckId) =>
-            _flashcardsBusiness.GetFlashcards(UserId, deckId);
+        public IEnumerable<ModelFlashcard> GetFlashcards(int deckId)
+        {
+            return _flashcardsBusiness.GetFlashcards(UserId, deckId);
+        }
 
         [HttpPost("{deckId}/flashcards")]
         public Task<ModelFlashcard> CreateFlashcard(int deckId,
-            [FromBody] CreateFlashcardRequest createFlashcardRequest) =>
-            _flashcardsBusiness.Create(new CreateFlashcard(UserId, deckId, createFlashcardRequest.OriginalWord,
+            [FromBody] CreateFlashcardRequest createFlashcardRequest)
+        {
+            return _flashcardsBusiness.Create(new CreateFlashcard(UserId, deckId, createFlashcardRequest.OriginalWord,
                 createFlashcardRequest.TranslatedWord));
+        }
 
         [HttpGet("{deckId}/flashcards/{flashcardId}")]
-        public Task<ModelFlashcard> GetFlashcard(int deckId, int flashcardId) =>
-            _flashcardsBusiness.GetFlashcard(UserId, deckId, flashcardId);
+        public Task<ModelFlashcard> GetFlashcard(int deckId, int flashcardId)
+        {
+            return _flashcardsBusiness.GetFlashcard(UserId, deckId, flashcardId);
+        }
 
         [HttpDelete("{deckId}/flashcards/{flashcardId}")]
-        public Task DeleteCard(int deckId, int flashcardId) =>
-            _flashcardsBusiness.DeleteAsync(UserId, deckId, flashcardId);
+        public Task DeleteCard(int deckId, int flashcardId)
+        {
+            return _flashcardsBusiness.DeleteAsync(UserId, deckId, flashcardId);
+        }
     }
 }

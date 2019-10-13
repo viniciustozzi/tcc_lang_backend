@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace TccLangBackend.Api.Business
+namespace TccLangBackend.Framework.Translation
 {
     public class TranslateResponse
     {

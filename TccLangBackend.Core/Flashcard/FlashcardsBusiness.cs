@@ -7,19 +7,29 @@ namespace TccLangBackend.Core.Flashcard
     {
         private readonly IFlashcardRepository _flashcardRepository;
 
-        public FlashcardsBusiness(IFlashcardRepository flashcardRepository) =>
+        public FlashcardsBusiness(IFlashcardRepository flashcardRepository)
+        {
             _flashcardRepository = flashcardRepository;
+        }
 
-        public IEnumerable<ModelFlashcard> GetFlashcards(int userId, int deckId) =>
-            _flashcardRepository.GetAll(userId, deckId);
+        public IEnumerable<ModelFlashcard> GetFlashcards(int userId, int deckId)
+        {
+            return _flashcardRepository.GetAll(userId, deckId);
+        }
 
-        public Task<ModelFlashcard> GetFlashcard(int userId, int deckId, int flashcardId) =>
-            _flashcardRepository.FindAsync(userId, deckId, flashcardId);
+        public Task<ModelFlashcard> GetFlashcard(int userId, int deckId, int flashcardId)
+        {
+            return _flashcardRepository.FindAsync(userId, deckId, flashcardId);
+        }
 
-        public Task<ModelFlashcard> Create(CreateFlashcard createFlashcard) =>
-            _flashcardRepository.CreateAsync(createFlashcard);
+        public Task<ModelFlashcard> Create(CreateFlashcard createFlashcard)
+        {
+            return _flashcardRepository.CreateAsync(createFlashcard);
+        }
 
-        public Task DeleteAsync(int userId, int deckId, int flashcardId) =>
-            _flashcardRepository.DeleteAsync(userId, deckId, flashcardId);
+        public Task DeleteAsync(int userId, int deckId, int flashcardId)
+        {
+            return _flashcardRepository.DeleteAsync(userId, deckId, flashcardId);
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace TccLangBackend.Api.Business.Feed
+namespace TccLangBackend.Framework.Feed
 {
     public class Tika
     {

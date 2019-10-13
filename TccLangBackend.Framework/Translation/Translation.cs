@@ -1,4 +1,4 @@
-namespace TccLangBackend.Api.Business
+namespace TccLangBackend.Framework.Translation
 {
     public class Translation
     {

@@ -5,26 +5,33 @@ using Microsoft.EntityFrameworkCore;
 using TccLangBackend.Core.Flashcard;
 using Z.EntityFramework.Plus;
 
-namespace TccLangBackend.DB.Repositories
+namespace TccLangBackend.Framework.DB.Repositories
 {
     public class FlashcardRepository : IFlashcardRepository
     {
         private readonly TccDbContext _dbContext;
 
-        public FlashcardRepository(TccDbContext dbContext) => _dbContext = dbContext;
+        public FlashcardRepository(TccDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
 
-        public IEnumerable<ModelFlashcard> GetAll(int userId, int deckId) =>
-            _dbContext.Flashcards
+        public IEnumerable<ModelFlashcard> GetAll(int userId, int deckId)
+        {
+            return _dbContext.Flashcards
                 .Include(x => x.Deck)
                 .Where(x => x.Deck.UserId == userId && x.DeckId == deckId)
                 .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord));
+        }
 
-        public Task<ModelFlashcard> FindAsync(int userId, int deckId, int flashcardId) =>
-            _dbContext.Flashcards
+        public Task<ModelFlashcard> FindAsync(int userId, int deckId, int flashcardId)
+        {
+            return _dbContext.Flashcards
                 .Include(x => x.Deck)
                 .Where(x => x.Id == flashcardId && x.DeckId == deckId && x.Deck.UserId == userId)
                 .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord))
                 .FirstOrDefaultAsync();
+        }
 
         public async Task<ModelFlashcard> CreateAsync(CreateFlashcard createFlashcard)
         {
@@ -42,10 +49,12 @@ namespace TccLangBackend.DB.Repositories
             return new ModelFlashcard(flashcard.Id, flashcard.OriginalWord, flashcard.TranslatedWord);
         }
 
-        public Task DeleteAsync(int userId, int deckId, int flashcardId) =>
-            _dbContext.Flashcards
+        public Task DeleteAsync(int userId, int deckId, int flashcardId)
+        {
+            return _dbContext.Flashcards
                 .Include(x => x.Deck)
                 .Where(x => x.Id == flashcardId && x.DeckId == deckId && x.Deck.UserId == userId)
                 .DeleteAsync();
+        }
     }
 }

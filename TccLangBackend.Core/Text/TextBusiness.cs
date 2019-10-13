@@ -7,12 +7,24 @@ namespace TccLangBackend.Core.Text
     {
         private readonly ITextRepository _textRepository;
 
-        public TextBusiness(ITextRepository textRepository) => _textRepository = textRepository;
+        public TextBusiness(ITextRepository textRepository)
+        {
+            _textRepository = textRepository;
+        }
 
-        public IEnumerable<SummaryText> GetAll() => _textRepository.GetAll();
+        public IEnumerable<SummaryText> GetAll()
+        {
+            return _textRepository.GetAll();
+        }
 
-        public Task<DetailedText> GetAsync(int userId, int textId) => _textRepository.GetAsync(userId, textId);
+        public Task<DetailedText> GetAsync(int userId, int textId)
+        {
+            return _textRepository.GetAsync(userId, textId);
+        }
 
-        public Task CreateAsync(CreateText createText) => _textRepository.CreateAsync(createText);
+        public Task CreateAsync(CreateText createText)
+        {
+            return _textRepository.CreateAsync(createText);
+        }
     }
 }

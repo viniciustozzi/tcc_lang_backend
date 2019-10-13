@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TccLangBackend.Api.Business;
+using TccLangBackend.Framework.Translation;
 
 namespace TccLangBackend.Api.Controllers
 {
@@ -10,10 +10,15 @@ namespace TccLangBackend.Api.Controllers
     {
         private readonly TranslationBusiness _translationBusiness;
 
-        public TranslateController(TranslationBusiness translationBusiness) =>
+        public TranslateController(TranslationBusiness translationBusiness)
+        {
             _translationBusiness = translationBusiness;
+        }
 
         [HttpGet]
-        public Task<Translation> Get([FromQuery] string text) => _translationBusiness.Translate(text);
+        public Task<Translation> Get([FromQuery] string text)
+        {
+            return _translationBusiness.Translate(text);
+        }
     }
 }

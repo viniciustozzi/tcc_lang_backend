@@ -12,18 +12,22 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using TccLangBackend.Api.Business;
-using TccLangBackend.Api.Business.Feed;
 using TccLangBackend.Core.Deck;
 using TccLangBackend.Core.Flashcard;
 using TccLangBackend.Core.Text;
-using TccLangBackend.DB;
-using TccLangBackend.DB.Repositories;
+using TccLangBackend.Framework.DB;
+using TccLangBackend.Framework.DB.Repositories;
+using TccLangBackend.Framework.Feed;
+using TccLangBackend.Framework.Translation;
 
 namespace TccLangBackend.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration) => Configuration = configuration;
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
         private IConfiguration Configuration { get; }
 
@@ -92,7 +96,7 @@ namespace TccLangBackend.Api
             services.AddScoped<FlashcardsBusiness>();
             services.AddScoped<DeckBusiness>();
             services.AddScoped<TranslationBusiness>();
-            services.AddScoped<FeedBusiness>();
+            services.AddScoped<FeedRepository>();
             services.AddScoped<IDeckRepository, DeckRepository>();
             services.AddScoped<IFlashcardRepository, FlashcardRepository>();
             services.AddScoped<ITextRepository, TextRepository>();
