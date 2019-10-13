@@ -12,11 +12,16 @@ namespace TccLangBackend.Core.Text
             _textRepository = textRepository;
         }
 
-        public IEnumerable<SummaryText> GetAll()
+        public IEnumerable<SummaryText> GetFeed()
         {
-            return _textRepository.GetAll();
+            return _textRepository.GetFeed();
         }
 
+        public IEnumerable<SummaryText> GetBookmarks(int userId)
+        {
+            return _textRepository.GetBookmarks(userId);
+        }
+        
         public Task<DetailedText> GetAsync(int userId, int textId)
         {
             return _textRepository.GetAsync(userId, textId);
@@ -25,6 +30,11 @@ namespace TccLangBackend.Core.Text
         public Task CreateAsync(CreateText createText)
         {
             return _textRepository.CreateAsync(createText);
+        }
+
+        public Task CreateBookmark(CreateBookmark createBookmark)
+        {
+            return _textRepository.CreateBookmark(createBookmark);
         }
     }
 }

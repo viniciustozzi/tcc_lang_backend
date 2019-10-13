@@ -17,7 +17,7 @@ namespace TccLangBackend.Framework.DB.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<SummaryText> GetAll()
+        public IEnumerable<SummaryText> GetFeed()
         {
             return _dbContext.Texts
                 .Select(x => new SummaryText(x.Id, x.Title, x.Words));
@@ -58,6 +58,25 @@ namespace TccLangBackend.Framework.DB.Repositories
             });
 
             return _dbContext.SaveChangesAsync();
+        }
+
+        public Task CreateBookmark(CreateBookmark createBookmark)
+        {
+            _dbContext.Bookmarks.Add(new Bookmark
+            {
+                TextId = createBookmark.TextId,
+                UserId = createBookmark.UserId
+            });
+
+            return _dbContext.SaveChangesAsync();
+        }
+
+        public IEnumerable<SummaryText> GetBookmarks(int userId)
+        {
+            return _dbContext.Bookmarks
+                .Include(x => x.Text)
+                .Where(x => x.UserId == userId)
+                .Select(x => new SummaryText(x.TextId, x.Text.Title, x.Text.Words));
         }
     }
 }

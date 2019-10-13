@@ -18,5 +18,8 @@ namespace TccLangBackend.Framework.DB
         public IList<Deck> Decks { get; set; }
 
         public IList<Text> Texts { get; set; }
+
+        public IList<Bookmark> Bookmarks { get; set; }
+        
     }
 }

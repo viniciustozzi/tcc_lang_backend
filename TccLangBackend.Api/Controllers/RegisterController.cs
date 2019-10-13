@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TccLangBackend.Api.Business;
+using TccLangBackend.Api.Auth;
 
 namespace TccLangBackend.Api.Controllers
 {

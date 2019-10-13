@@ -11,7 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
-using TccLangBackend.Api.Business;
+using TccLangBackend.Api.Auth;
 using TccLangBackend.Core.Deck;
 using TccLangBackend.Core.Flashcard;
 using TccLangBackend.Core.Text;

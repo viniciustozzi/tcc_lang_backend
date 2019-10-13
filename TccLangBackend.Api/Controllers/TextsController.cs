@@ -24,7 +24,7 @@ namespace TccLangBackend.Api.Controllers
         [HttpGet]
         public IEnumerable<SummaryText> GetTexts()
         {
-            return _textBusiness.GetAll();
+            return _textBusiness.GetFeed();
         }
 
         [HttpPost]
@@ -37,6 +37,18 @@ namespace TccLangBackend.Api.Controllers
         public Task<DetailedText> GetText(int textId)
         {
             return _textBusiness.GetAsync(UserId, textId);
+        }
+
+        [HttpGet("bookmarks")]
+        public IEnumerable<SummaryText> GetBookmarks()
+        {
+            return _textBusiness.GetBookmarks(UserId);
+        }
+
+        [HttpPost("bookmarks")]
+        public Task CreateBookmark([FromBody] CreateBookmarkRequest createBookmarkRequest)
+        {
+            return _textBusiness.CreateBookmark(new CreateBookmark(UserId, createBookmarkRequest.TextId));
         }
 
         [HttpPost("feed")]

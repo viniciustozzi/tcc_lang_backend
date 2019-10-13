@@ -13,7 +13,16 @@ namespace TccLangBackend.Framework.DB
         public DbSet<Flashcard> Flashcards { get; set; }
         public DbSet<Deck> Decks { get; set; }
 
+        public DbSet<Bookmark> Bookmarks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            CreateUser(modelBuilder);
+            CreateDeck(modelBuilder);
+            CreateText(modelBuilder);
+        }
+
+        private static void CreateUser(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .HasIndex(e => e.Username).IsUnique();
@@ -23,13 +32,29 @@ namespace TccLangBackend.Framework.DB
                 .WithOne(x => x.User)
                 .HasForeignKey(x => x.UserId);
 
+            modelBuilder.Entity<User>()
+                .HasMany(x => x.Bookmarks)
+                .WithOne(x => x.User)
+                .HasForeignKey(x => x.UserId);
+        }
+
+        private static void CreateDeck(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Deck>()
                 .HasMany(x => x.Flashcards)
                 .WithOne(x => x.Deck)
                 .HasForeignKey(x => x.DeckId);
+        }
 
+        private static void CreateText(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<Text>()
                 .HasMany(x => x.Decks)
+                .WithOne(x => x.Text)
+                .HasForeignKey(x => x.TextId);
+
+            modelBuilder.Entity<Text>()
+                .HasMany(x => x.Bookmarks)
                 .WithOne(x => x.Text)
                 .HasForeignKey(x => x.TextId);
         }

@@ -26,10 +26,4 @@
         <ProjectReference Include="..\TccLangBackend.News\TccLangBackend.News.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-        <None Update="tika-app-1.22.jar">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </None>
-    </ItemGroup>
-
 </Project>

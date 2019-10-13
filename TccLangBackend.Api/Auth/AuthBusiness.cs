@@ -12,7 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using TccLangBackend.Framework.DB;
 
-namespace TccLangBackend.Api.Business
+namespace TccLangBackend.Api.Auth
 {
     public class AuthBusiness
     {
@@ -129,30 +129,5 @@ namespace TccLangBackend.Api.Business
 
             return true;
         }
-    }
-
-    public class RegisterRequest
-    {
-        public string Username { get; set; }
-        public string Fullname { get; set; }
-        public string Password { get; set; }
-    }
-
-    public class AuthRequest
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-    }
-
-    public class TokenResponse
-    {
-        public string Token { get; set; }
-        public DateTime ExpirationDate { get; set; }
-    }
-
-    public class UserToken
-    {
-        public int UserId { get; set; }
-        public IEnumerable<string> Roles { get; set; }
     }
 }
