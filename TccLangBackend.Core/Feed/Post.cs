@@ -1,19 +1,18 @@
 using System;
 
-namespace TccLangBackend.Framework.Feed
+namespace TccLangBackend.Core.Feed
 {
     public class Post
     {
-        private readonly string _url;
-
-        public Post(string title, string mainContent, DateTime postDate, string url)
+        public Post(string title, string mainContent, DateTime postDate, string id)
         {
-            _url = url;
             Title = title;
             MainContent = mainContent;
             PostDate = postDate;
+            Id = id;
         }
 
+        public string Id { get; }
         public string Title { get; }
         public string MainContent { get; }
         public DateTime PostDate { get; }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -9,17 +10,20 @@ namespace TccLangBackend.Framework.Translation
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
+        private static readonly string Url = "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0";
+
         public TranslationBusiness(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<Translation> Translate(string text)
+        public async Task<Translation> Translate(string text, string fromLang, string toLang)
         {
             var httpClient = _httpClientFactory.CreateClient("cognitive");
 
             var httpResponseMessage =
-                await httpClient.PostAsJsonAsync("", new List<Translatee> {new Translatee {Text = text}});
+                await httpClient.PostAsJsonAsync($"{Url}&to={toLang}&from={fromLang}",
+                    new List<Translatee> {new Translatee {Text = text}});
 
             var translations = await httpResponseMessage.Content.ReadAsAsync<IEnumerable<TranslateResponse>>();
 

@@ -3,8 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TccLangBackend.Api.Controllers.Requests;
+using TccLangBackend.Core.Feed;
 using TccLangBackend.Core.Text;
-using TccLangBackend.Framework.Feed;
+using TccLangBackend.Framework.Content;
 
 namespace TccLangBackend.Api.Controllers
 {
@@ -12,25 +13,29 @@ namespace TccLangBackend.Api.Controllers
     [ApiController]
     public class TextController : UtilControllerBase
     {
-        private readonly FeedRepository _feedRepository;
+        private readonly IContentRepository _contentRepository;
+        private readonly FeedBusiness _feedBusiness;
         private readonly TextBusiness _textBusiness;
 
-        public TextController(TextBusiness textBusiness, FeedRepository feedRepository)
+        public TextController(TextBusiness textBusiness, IContentRepository contentRepository,
+            FeedBusiness feedBusiness)
         {
             _textBusiness = textBusiness;
-            _feedRepository = feedRepository;
+            _contentRepository = contentRepository;
+            _feedBusiness = feedBusiness;
         }
 
         [HttpGet]
-        public IEnumerable<SummaryText> GetTexts()
+        public IEnumerable<SummaryText> GetTexts([FromQuery] string lang = "de")
         {
-            return _textBusiness.GetFeed();
+            return _textBusiness.GetFeed(lang);
         }
 
         [HttpPost]
         public Task SaveText([FromBody] CreateTextRequest createTextRequest)
         {
-            return _textBusiness.CreateAsync(new CreateText(createTextRequest.Words, createTextRequest.Title));
+            return _textBusiness.CreateAsync(new CreateText(createTextRequest.Words, createTextRequest.Title,
+                createTextRequest.Language));
         }
 
         [HttpGet("{textId}")]
@@ -53,13 +58,9 @@ namespace TccLangBackend.Api.Controllers
 
         [HttpPost("feed")]
         [AllowAnonymous]
-        public async Task<IEnumerable<Post>> Feed([FromQuery] string url)
+        public Task Feed()
         {
-            var posts = await _feedRepository.RetriveAsync(url);
-
-            foreach (var post in posts) await _textBusiness.CreateAsync(new CreateText(post.MainContent, post.Title));
-
-            return posts;
+            return _feedBusiness.FillDatabaseWithBigData();
         }
     }
 }

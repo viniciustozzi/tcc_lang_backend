@@ -11,6 +11,8 @@ namespace TccLangBackend.Framework.DB
 
         public string Words { get; set; }
 
+        public string Language { get; set; }
+
         public ICollection<Deck> Decks { get; set; }
 
         public ICollection<Bookmark> Bookmarks { get; set; }

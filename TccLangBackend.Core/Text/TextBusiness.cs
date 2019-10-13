@@ -12,24 +12,26 @@ namespace TccLangBackend.Core.Text
             _textRepository = textRepository;
         }
 
-        public IEnumerable<SummaryText> GetFeed()
+        public IEnumerable<SummaryText> GetFeed(string lang)
         {
-            return _textRepository.GetFeed();
+            return _textRepository.GetFeed(lang);
         }
 
         public IEnumerable<SummaryText> GetBookmarks(int userId)
         {
             return _textRepository.GetBookmarks(userId);
         }
-        
+
         public Task<DetailedText> GetAsync(int userId, int textId)
         {
             return _textRepository.GetAsync(userId, textId);
         }
 
-        public Task CreateAsync(CreateText createText)
+        public async Task CreateAsync(CreateText createText)
         {
-            return _textRepository.CreateAsync(createText);
+            var existByTile = await _textRepository.ExistByTileAsync(createText.Title);
+            if (!existByTile)
+                await _textRepository.CreateAsync(createText);
         }
 
         public Task CreateBookmark(CreateBookmark createBookmark)

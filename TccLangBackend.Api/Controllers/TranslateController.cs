@@ -16,9 +16,9 @@ namespace TccLangBackend.Api.Controllers
         }
 
         [HttpGet]
-        public Task<Translation> Get([FromQuery] string text)
+        public Task<Translation> Get([FromQuery] string text, [FromQuery] string from = "de", string to = "en")
         {
-            return _translationBusiness.Translate(text);
+            return _translationBusiness.Translate(text, from, to);
         }
     }
 }

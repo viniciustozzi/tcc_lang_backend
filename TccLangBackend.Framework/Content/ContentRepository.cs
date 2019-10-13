@@ -5,19 +5,21 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using TccLangBackend.Core.Feed;
+using static TccLangBackend.Framework.Content.Tika;
 
-namespace TccLangBackend.Framework.Feed
+namespace TccLangBackend.Framework.Content
 {
-    public class FeedRepository
+    public class ContentRepository : IContentRepository
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public FeedRepository(IHttpClientFactory httpClientFactory)
+        public ContentRepository(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IEnumerable<Post>> RetriveAsync(string url)
+        public async Task<IEnumerable<Post>> RetrieveAsync(string url)
         {
             var xmlContent = await GetXmlContent(url);
             var items = ParseXmlAtomFeed(xmlContent);
@@ -26,9 +28,8 @@ namespace TccLangBackend.Framework.Feed
 
             Parallel.ForEach(items, async item =>
             {
-                var tika = new Tika(item.Url);
-                var text = await tika.GetMainTextAsync();
-                posts.Add(new Post(item.Title, text, item.PublishDate.Date, item.Url));
+                var text = await GetMainTextAsync(item.Url);
+                posts.Add(new Post(item.Title, text, item.PublishDate.Date, item.Id));
             });
 
             return posts;
@@ -45,16 +46,22 @@ namespace TccLangBackend.Framework.Feed
         {
             var xDocument = XDocument.Parse(xmlString);
 
-            return xDocument.Root
-                .Elements()
-                .Where(x => x.Name.LocalName == "entry")
-                .Select(x => new FeedItem(x));
+            if (xDocument.Root != null)
+                return xDocument.Root
+                    .Elements()
+                    .Where(x => x.Name.LocalName == "entry")
+                    .Select(x => new FeedItem(x));
+
+            throw new Exception(
+                "Invalid feed format, or I did not properly parsed the xml, either way you are at your own.");
         }
 
         private class FeedItem
         {
             public FeedItem(XElement entry)
             {
+                Id = GetFirstByLocalName(entry, "id").Value;
+
                 Title = GetFirstByLocalName(entry, "title").Value;
 
                 var stringDate = GetFirstByLocalName(entry, "published").Value;
@@ -64,11 +71,12 @@ namespace TccLangBackend.Framework.Feed
                 Url = xLink.Attributes("href").First().Value;
             }
 
+            public string Id { get; }
             public string Title { get; }
             public string Url { get; }
             public DateTime PublishDate { get; }
 
-            private XElement GetFirstByLocalName(XElement entry, string localName)
+            private static XElement GetFirstByLocalName(XElement entry, string localName)
             {
                 return entry
                     .Elements()

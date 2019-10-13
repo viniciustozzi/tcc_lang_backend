@@ -13,11 +13,12 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using TccLangBackend.Api.Auth;
 using TccLangBackend.Core.Deck;
+using TccLangBackend.Core.Feed;
 using TccLangBackend.Core.Flashcard;
 using TccLangBackend.Core.Text;
+using TccLangBackend.Framework.Content;
 using TccLangBackend.Framework.DB;
 using TccLangBackend.Framework.DB.Repositories;
-using TccLangBackend.Framework.Feed;
 using TccLangBackend.Framework.Translation;
 
 namespace TccLangBackend.Api
@@ -63,16 +64,11 @@ namespace TccLangBackend.Api
                 };
             });
 
-            services.AddHttpClient("cognitive",
-                c =>
-                {
-                    c.BaseAddress =
-                        new Uri(
-                            "https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&to=en&from=de");
-
-                    var apiKey = Configuration.GetValue<string>("API_KEY");
-                    c.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
-                });
+            services.AddHttpClient("cognitive", c =>
+            {
+                var apiKey = Configuration.GetValue<string>("API_KEY");
+                c.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", apiKey);
+            });
 
             services.AddSwaggerGen(c =>
             {
@@ -96,7 +92,8 @@ namespace TccLangBackend.Api
             services.AddScoped<FlashcardsBusiness>();
             services.AddScoped<DeckBusiness>();
             services.AddScoped<TranslationBusiness>();
-            services.AddScoped<FeedRepository>();
+            services.AddScoped<FeedBusiness>();
+            services.AddScoped<IContentRepository, ContentRepository>();
             services.AddScoped<IDeckRepository, DeckRepository>();
             services.AddScoped<IFlashcardRepository, FlashcardRepository>();
             services.AddScoped<ITextRepository, TextRepository>();

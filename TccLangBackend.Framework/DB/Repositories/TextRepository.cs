@@ -17,9 +17,10 @@ namespace TccLangBackend.Framework.DB.Repositories
             _dbContext = dbContext;
         }
 
-        public IEnumerable<SummaryText> GetFeed()
+        public IEnumerable<SummaryText> GetFeed(string lang)
         {
             return _dbContext.Texts
+                .Where(x => x.Language == lang)
                 .Select(x => new SummaryText(x.Id, x.Title, x.Words));
         }
 
@@ -54,7 +55,8 @@ namespace TccLangBackend.Framework.DB.Repositories
             _dbContext.Texts.Add(new Text
             {
                 Title = createText.Title,
-                Words = createText.Words
+                Words = createText.Words,
+                Language = createText.Lang
             });
 
             return _dbContext.SaveChangesAsync();
@@ -77,6 +79,12 @@ namespace TccLangBackend.Framework.DB.Repositories
                 .Include(x => x.Text)
                 .Where(x => x.UserId == userId)
                 .Select(x => new SummaryText(x.TextId, x.Text.Title, x.Text.Words));
+        }
+
+        public Task<bool> ExistByTileAsync(string textTitle)
+        {
+            return _dbContext.Texts
+                .AnyAsync(x => x.Title == textTitle);
         }
     }
 }

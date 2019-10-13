@@ -1,27 +1,24 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace TccLangBackend.Framework.Feed
+namespace TccLangBackend.Framework.Content
 {
     public class Tika
     {
-        private readonly string _url;
-
-        public Tika(string url) => _url = url;
-
-        public Task<string> GetMainTextAsync()
+        public static Task<string> GetMainTextAsync(string url)
         {
             var location = Assembly.GetEntryAssembly()?.Location;
             var fullPath = Path.GetDirectoryName(location);
-
+            var escapeUriString = Uri.EscapeUriString(url);
             using (var process = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "java",
-                    Arguments = $"-jar {fullPath}/tika-app-1.22.jar --text-main {_url}",
+                    Arguments = $"-jar {fullPath}/tika-app-1.22.jar --text-main {escapeUriString}",
                     RedirectStandardOutput = true,
                     UseShellExecute = false,
                     CreateNoWindow = true
