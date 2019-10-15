@@ -51,7 +51,7 @@ namespace TccLangBackend.Api.Controllers
         }
 
         [HttpPost("bookmarks")]
-        public Task CreateBookmark([FromBody] CreateBookmarkRequest createBookmarkRequest)
+        public Task CreateBookmark([FromQuery] CreateBookmarkRequest createBookmarkRequest)
         {
             return _textBusiness.CreateBookmark(new CreateBookmark(UserId, createBookmarkRequest.TextId));
         }
