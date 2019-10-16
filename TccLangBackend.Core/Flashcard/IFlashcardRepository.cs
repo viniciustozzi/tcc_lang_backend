@@ -11,6 +11,6 @@ namespace TccLangBackend.Core.Flashcard
 
         Task<ModelFlashcard> CreateAsync(CreateFlashcard createFlashcard);
 
-        Task DeleteAsync(int userId, int deckId, int flashcardId);
+        Task DeleteByOriginalWordAsync(int userId, int deckId, string originalWord);
     }
 }
