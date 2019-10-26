@@ -16,6 +16,7 @@ using TccLangBackend.Core.Deck;
 using TccLangBackend.Core.Feed;
 using TccLangBackend.Core.Flashcard;
 using TccLangBackend.Core.Text;
+using TccLangBackend.Core.User;
 using TccLangBackend.Framework.Content;
 using TccLangBackend.Framework.DB;
 using TccLangBackend.Framework.DB.Repositories;
@@ -97,6 +98,7 @@ namespace TccLangBackend.Api
             services.AddScoped<IDeckRepository, DeckRepository>();
             services.AddScoped<IFlashcardRepository, FlashcardRepository>();
             services.AddScoped<ITextRepository, TextRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

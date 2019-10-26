@@ -8,8 +8,9 @@ namespace TccLangBackend.Core.Text
         IEnumerable<SummaryText> GetFeed(string lang);
         Task<DetailedText> GetAsync(int userId, int textId);
         Task CreateAsync(CreateText createText);
-        Task CreateBookmark(CreateBookmark createBookmark);
+        Task CreateBookmarkAsync(CreateBookmark createBookmark);
         IEnumerable<SummaryText> GetBookmarks(int userId);
         Task<bool> ExistByTileAsync(string textTitle);
+        Task<bool> ExistAsync(int textId);
     }
 }
