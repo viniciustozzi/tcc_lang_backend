@@ -31,10 +31,10 @@ namespace TccLangBackend.Core.Flashcard
         {
             return _flashcardRepository.CreateLogAsync(createLog);
         }
-
-        public Task DeleteAsync(int userId, int deckId, int flashcardId)
+        
+        public Task DeleteByOriginalWord(int userId, int deckId, string originalWord)
         {
-            return _flashcardRepository.DeleteAsync(userId, deckId, flashcardId);
+            return _flashcardRepository.DeleteByOriginalWordAsync(userId, deckId, originalWord);
         }
     }
 }

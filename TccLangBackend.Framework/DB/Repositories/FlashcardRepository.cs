@@ -49,11 +49,11 @@ namespace TccLangBackend.Framework.DB.Repositories
             return new ModelFlashcard(flashcard.Id, flashcard.OriginalWord, flashcard.TranslatedWord);
         }
 
-        public Task DeleteAsync(int userId, int deckId, int flashcardId)
+        public Task DeleteByOriginalWordAsync(int userId, int deckId, string originalWord)
         {
             return _dbContext.Flashcards
                 .Include(x => x.Deck)
-                .Where(x => x.Id == flashcardId && x.DeckId == deckId && x.Deck.UserId == userId)
+                .Where(x => x.OriginalWord == originalWord && x.DeckId == deckId && x.Deck.UserId == userId)
                 .DeleteAsync();
         }
 

@@ -59,10 +59,10 @@ namespace TccLangBackend.Api.Controllers
             return _flashcardsBusiness.GetFlashcard(UserId, deckId, flashcardId);
         }
 
-        [HttpDelete("{deckId}/flashcards/{flashcardId}")]
-        public Task DeleteCard(int deckId, int flashcardId)
+        [HttpDelete("{deckId}/flashcards/{originalWord}")]
+        public Task DeleteCard(int deckId, string originalWord)
         {
-            return _flashcardsBusiness.DeleteAsync(UserId, deckId, flashcardId);
+            return _flashcardsBusiness.DeleteByOriginalWord(UserId, deckId, originalWord);
         }
 
         [HttpPost("{deckId}/flashcards/{flashcardId}/logs/{difficulty}")]
