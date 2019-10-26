@@ -62,7 +62,7 @@ namespace TccLangBackend.Framework.DB.Repositories
             return _dbContext.SaveChangesAsync();
         }
 
-        public Task CreateBookmark(CreateBookmark createBookmark)
+        public Task CreateBookmarkAsync(CreateBookmark createBookmark)
         {
             _dbContext.Bookmarks.Add(new Bookmark
             {
@@ -85,6 +85,11 @@ namespace TccLangBackend.Framework.DB.Repositories
         {
             return _dbContext.Texts
                 .AnyAsync(x => x.Title == textTitle);
+        }
+
+        public Task<bool> ExistAsync(int textId)
+        {
+            return _dbContext.Texts.AnyAsync(x => x.Id == textId);
         }
     }
 }

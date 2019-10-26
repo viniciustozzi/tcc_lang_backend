@@ -53,7 +53,7 @@ namespace TccLangBackend.Api.Controllers
         [HttpPost("bookmarks")]
         public Task CreateBookmark([FromQuery] CreateBookmarkRequest createBookmarkRequest)
         {
-            return _textBusiness.CreateBookmark(new CreateBookmark(UserId, createBookmarkRequest.TextId));
+            return _textBusiness.CreateBookmarkAsync(new CreateBookmark(UserId, createBookmarkRequest.TextId));
         }
 
         [HttpPost("feed")]
