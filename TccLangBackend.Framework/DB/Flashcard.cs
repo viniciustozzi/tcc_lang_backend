@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace TccLangBackend.Framework.DB
@@ -14,5 +15,7 @@ namespace TccLangBackend.Framework.DB
         public int DeckId { get; set; }
 
         public Deck Deck { get; set; }
+
+        public ICollection<FlashcardLog> FlashcardLogs { get; set; }
     }
 }

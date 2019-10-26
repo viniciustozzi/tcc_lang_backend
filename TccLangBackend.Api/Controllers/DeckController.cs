@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -62,6 +63,12 @@ namespace TccLangBackend.Api.Controllers
         public Task DeleteCard(int deckId, int flashcardId)
         {
             return _flashcardsBusiness.DeleteAsync(UserId, deckId, flashcardId);
+        }
+
+        [HttpPost("{deckId}/flashcards/{flashcardId}/logs/{difficulty}")]
+        public Task CreateFlashcardLog(int deckId, int flashcardId, Difficulty difficulty)
+        {
+            return _flashcardsBusiness.CreateLogAsync(new CreateLog(flashcardId, difficulty, DateTime.Now));
         }
     }
 }
