@@ -13,6 +13,8 @@ namespace TccLangBackend.Framework.DB
         public DbSet<Flashcard> Flashcards { get; set; }
         public DbSet<Deck> Decks { get; set; }
 
+        public DbSet<FlashcardLog> FlashcardLogs { get; set; }
+
         public DbSet<Bookmark> Bookmarks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -20,6 +22,15 @@ namespace TccLangBackend.Framework.DB
             CreateUser(modelBuilder);
             CreateDeck(modelBuilder);
             CreateText(modelBuilder);
+            CreateFlashcard(modelBuilder);
+        }
+
+        private static void CreateFlashcard(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Flashcard>()
+                .HasMany(x => x.FlashcardLogs)
+                .WithOne(x => x.Flashcard)
+                .HasForeignKey(x => x.FlashcardId);
         }
 
         private static void CreateUser(ModelBuilder modelBuilder)

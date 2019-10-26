@@ -64,5 +64,11 @@ namespace TccLangBackend.Api.Controllers
         {
             return _flashcardsBusiness.DeleteByOriginalWord(UserId, deckId, originalWord);
         }
+
+        [HttpPost("{deckId}/flashcards/{flashcardId}/logs/{difficulty}")]
+        public Task CreateFlashcardLog(int deckId, int flashcardId, Difficulty difficulty)
+        {
+            return _flashcardsBusiness.CreateLogAsync(new CreateLog(flashcardId, difficulty, DateTime.Now));
+        }
     }
 }

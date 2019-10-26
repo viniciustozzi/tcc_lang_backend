@@ -27,6 +27,11 @@ namespace TccLangBackend.Core.Flashcard
             return _flashcardRepository.CreateAsync(createFlashcard);
         }
 
+        public Task CreateLogAsync(CreateLog createLog)
+        {
+            return _flashcardRepository.CreateLogAsync(createLog);
+        }
+        
         public Task DeleteByOriginalWord(int userId, int deckId, string originalWord)
         {
             return _flashcardRepository.DeleteByOriginalWordAsync(userId, deckId, originalWord);

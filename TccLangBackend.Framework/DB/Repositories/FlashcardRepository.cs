@@ -56,5 +56,17 @@ namespace TccLangBackend.Framework.DB.Repositories
                 .Where(x => x.OriginalWord == originalWord && x.DeckId == deckId && x.Deck.UserId == userId)
                 .DeleteAsync();
         }
+
+        public Task CreateLogAsync(CreateLog createLog)
+        {
+            _dbContext.FlashcardLogs.Add(new FlashcardLog
+            {
+                CreationDateTime = createLog.CreationDateTime,
+                FlashcardId = createLog.FlashcardId,
+                Difficulty = createLog.Difficulty
+            });
+
+            return _dbContext.SaveChangesAsync();
+        }
     }
 }
