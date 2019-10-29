@@ -6,23 +6,29 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using TccLangBackend.Core.Feed;
+using static TccLangBackend.Core.Feed.FeedType;
 using static TccLangBackend.Framework.Content.Tika;
 
 namespace TccLangBackend.Framework.Content
 {
-    public class ContentRepository : IContentRepository
+    public class RssFeedRepository : IRssFeedRepository
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public ContentRepository(IHttpClientFactory httpClientFactory)
+        public RssFeedRepository(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IEnumerable<Post>> RetrieveAsync(string url)
+        public async Task<IEnumerable<Post>> RetrieveAsync(string url, FeedType feedType)
         {
             var xmlContent = await GetXmlContent(url);
-            var items = ParseXmlAtomFeed(xmlContent);
+            var items = feedType switch
+            {
+                Atom => ParseXmlAtomFeed(xmlContent),
+                Rss => ParseXmlRssFeed(xmlContent),
+                _ => throw new IndexOutOfRangeException(nameof(feedType))
+            };
 
             var posts = new ConcurrentBag<Post>();
 
@@ -42,6 +48,23 @@ namespace TccLangBackend.Framework.Content
             return await response.Content.ReadAsStringAsync();
         }
 
+
+        private IEnumerable<FeedItem> ParseXmlRssFeed(string xmlString)
+        {
+            var xDocument = XDocument.Parse(xmlString);
+
+            if (xDocument.Root != null)
+                return xDocument.Root
+                    .Elements()
+                    .First()
+                    .Elements()
+                    .Where(x => x.Name.LocalName == "item")
+                    .Select(x => new RssFeedItem(x));
+
+            throw new Exception(
+                "Invalid feed format, or I did not properly parsed the xml, either way you are at your own.");
+        }
+
         private IEnumerable<FeedItem> ParseXmlAtomFeed(string xmlString)
         {
             var xDocument = XDocument.Parse(xmlString);
@@ -50,38 +73,10 @@ namespace TccLangBackend.Framework.Content
                 return xDocument.Root
                     .Elements()
                     .Where(x => x.Name.LocalName == "entry")
-                    .Select(x => new FeedItem(x));
+                    .Select(x => new AtomFeedItem(x));
 
             throw new Exception(
                 "Invalid feed format, or I did not properly parsed the xml, either way you are at your own.");
-        }
-
-        private class FeedItem
-        {
-            public FeedItem(XElement entry)
-            {
-                Id = GetFirstByLocalName(entry, "id").Value;
-
-                Title = GetFirstByLocalName(entry, "title").Value;
-
-                var stringDate = GetFirstByLocalName(entry, "published").Value;
-                PublishDate = DateTime.Parse(stringDate);
-
-                var xLink = GetFirstByLocalName(entry, "link");
-                Url = xLink.Attributes("href").First().Value;
-            }
-
-            public string Id { get; }
-            public string Title { get; }
-            public string Url { get; }
-            public DateTime PublishDate { get; }
-
-            private static XElement GetFirstByLocalName(XElement entry, string localName)
-            {
-                return entry
-                    .Elements()
-                    .First(x => x.Name.LocalName == localName);
-            }
         }
     }
 }

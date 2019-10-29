@@ -94,7 +94,7 @@ namespace TccLangBackend.Api
             services.AddScoped<DeckBusiness>();
             services.AddScoped<TranslationBusiness>();
             services.AddScoped<FeedBusiness>();
-            services.AddScoped<IContentRepository, ContentRepository>();
+            services.AddScoped<IRssFeedRepository, RssFeedRepository>();
             services.AddScoped<IDeckRepository, DeckRepository>();
             services.AddScoped<IFlashcardRepository, FlashcardRepository>();
             services.AddScoped<ITextRepository, TextRepository>();

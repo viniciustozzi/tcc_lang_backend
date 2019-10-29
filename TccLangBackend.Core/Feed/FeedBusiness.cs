@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -7,7 +8,7 @@ namespace TccLangBackend.Core.Feed
 {
     public class FeedBusiness
     {
-        private readonly IContentRepository _contentRepository;
+        private readonly IRssFeedRepository _rssFeedRepository;
         private readonly TextBusiness _textBusiness;
         private static readonly List<FeedSource> Feeds;
 
@@ -15,14 +16,15 @@ namespace TccLangBackend.Core.Feed
         {
             Feeds = new List<FeedSource>
             {
-                new FeedSource("http://rss.dw.com/atom/rss-en-top", "en"),
-                new FeedSource("http://rss.dw.com/atom/rss-de-top", "de"),
+              //  new FeedSource("http://rss.dw.com/atom/rss-en-top", "en", FeedType.Atom),
+              //  new FeedSource("http://rss.dw.com/atom/rss-de-top", "de", FeedType.Atom),
+                new FeedSource("http://ep00.epimg.net/rss/elpais/portada.xml", "es", FeedType.Rss)
             };
         }
 
-        public FeedBusiness(IContentRepository contentRepository, TextBusiness textBusiness)
+        public FeedBusiness(IRssFeedRepository rssFeedRepository, TextBusiness textBusiness)
         {
-            _contentRepository = contentRepository;
+            _rssFeedRepository = rssFeedRepository;
             _textBusiness = textBusiness;
         }
 
@@ -32,10 +34,17 @@ namespace TccLangBackend.Core.Feed
         {
             foreach (var source in Feeds)
             {
-                var posts = await _contentRepository.RetrieveAsync(source.Url);
+                var posts = await _rssFeedRepository.RetrieveAsync(source.Url, source.FeedType);
                 foreach (var post in posts)
                 {
-                    await _textBusiness.CreateAsync(new CreateText(post.MainContent, post.Title, source.Lang));
+                    try
+                    {
+                        await _textBusiness.CreateAsync(new CreateText(post.MainContent, post.Title, source.Lang));
+                    }
+                    catch (InvalidParamException)
+                    {
+                        //TODO: ignoring this error
+                    }
                 }
             }
         }

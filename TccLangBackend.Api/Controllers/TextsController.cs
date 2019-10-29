@@ -13,15 +13,15 @@ namespace TccLangBackend.Api.Controllers
     [ApiController]
     public class TextController : UtilControllerBase
     {
-        private readonly IContentRepository _contentRepository;
+        private readonly IRssFeedRepository _rssFeedRepository;
         private readonly FeedBusiness _feedBusiness;
         private readonly TextBusiness _textBusiness;
 
-        public TextController(TextBusiness textBusiness, IContentRepository contentRepository,
+        public TextController(TextBusiness textBusiness, IRssFeedRepository rssFeedRepository,
             FeedBusiness feedBusiness)
         {
             _textBusiness = textBusiness;
-            _contentRepository = contentRepository;
+            _rssFeedRepository = rssFeedRepository;
             _feedBusiness = feedBusiness;
         }
 
