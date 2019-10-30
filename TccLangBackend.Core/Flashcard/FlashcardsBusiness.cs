@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -27,14 +28,55 @@ namespace TccLangBackend.Core.Flashcard
             return _flashcardRepository.CreateAsync(createFlashcard);
         }
 
-        public Task CreateLogAsync(CreateLog createLog)
+        public async Task CreateLogAsync(CreateLog createLog)
         {
-            return _flashcardRepository.CreateLogAsync(createLog);
+            var previousEf = await _flashcardRepository.GetEasinessFactorByIdAsync(createLog.FlashcardId);
+
+            var ef = CalcEF(previousEf, createLog.Difficulty);
+
+            await _flashcardRepository.UpdateFlashcardEfById(createLog.FlashcardId, ef);
+
+            await _flashcardRepository.CreateLogAsync(createLog);
         }
-        
+
         public Task DeleteByOriginalWord(int userId, int deckId, string originalWord)
         {
             return _flashcardRepository.DeleteByOriginalWordAsync(userId, deckId, originalWord);
+        }
+
+        public async Task<IEnumerable<ModelFlashcard>> GetFlashcardToday(int userId, int deckId)
+        {
+            var flashcards = _flashcardRepository.GetAll(userId, deckId);
+
+            var oldList = new List<ModelFlashcard>();
+
+            foreach (var flashcard in flashcards)
+            {
+                var modelFlashcardLog = await _flashcardRepository.GetLastLogAsync(flashcard.Id);
+
+                if (modelFlashcardLog != null)
+                {
+                    var days = (DateTime.Now - modelFlashcardLog.DateTime).TotalDays;
+                    var result = days * CalcEF(flashcard.EasinessFactor, modelFlashcardLog.Difficulty);
+
+                    if (result > days)
+                        oldList.Add(flashcard);
+                }
+                else
+                    oldList.Add(flashcard);
+            }
+
+            return oldList;
+        }
+
+        private double CalcEF(double ef, Difficulty difficulty)
+        {
+            var newEf = ef * (int) difficulty;
+
+            if (newEf < 1.3)
+                newEf = 1.3;
+
+            return newEf;
         }
     }
 }

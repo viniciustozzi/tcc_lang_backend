@@ -64,6 +64,8 @@ namespace TccLangBackend.Api.Migrations
 
                     b.Property<int>("DeckId");
 
+                    b.Property<double>("EasinessFactor");
+
                     b.Property<string>("OriginalWord");
 
                     b.Property<string>("TranslatedWord");

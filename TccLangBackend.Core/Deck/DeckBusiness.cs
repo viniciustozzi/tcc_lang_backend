@@ -1,15 +1,19 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using TccLangBackend.Core.Flashcard;
 
 namespace TccLangBackend.Core.Deck
 {
     public class DeckBusiness
     {
         private readonly IDeckRepository _deckRepository;
+        private readonly FlashcardsBusiness _flashcardsBusiness;
 
-        public DeckBusiness(IDeckRepository deckRepository)
+        public DeckBusiness(IDeckRepository deckRepository, FlashcardsBusiness flashcardsBusiness)
         {
             _deckRepository = deckRepository;
+            _flashcardsBusiness = flashcardsBusiness;
         }
 
         public Task<SummaryDeck> CreateAsync(CreateDeck createDeck)
@@ -23,9 +27,12 @@ namespace TccLangBackend.Core.Deck
             return _deckRepository.GetAll(userId);
         }
 
-        public Task<DetailedDeck> GetAsync(int userId, int deckId)
+        public async Task<DetailedDeck> GetAsync(int userId, int deckId)
         {
-            return _deckRepository.GetAsync(userId, deckId);
+            var detailedDeck = await _deckRepository.GetAsync(userId, deckId);
+            var flashcardToday = await _flashcardsBusiness.GetFlashcardToday(userId, deckId);
+            detailedDeck.FlashcardsToday = flashcardToday.Count();
+            return detailedDeck;
         }
 
         public Task<DetailedDeck> GetByTextIdAsync(int userId, int textId)

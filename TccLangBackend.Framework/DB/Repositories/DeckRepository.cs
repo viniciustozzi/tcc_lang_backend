@@ -44,7 +44,7 @@ namespace TccLangBackend.Framework.DB.Repositories
                 .Include(x => x.Flashcards)
                 .Where(x => x.UserId == userId && x.Id == deckId)
                 .Select(x => new DetailedDeck(x.Id, x.Title, x.TextId,
-                    x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord))))
+                    x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord, y.EasinessFactor))))
                 .FirstOrDefaultAsync();
         }
 
@@ -54,7 +54,7 @@ namespace TccLangBackend.Framework.DB.Repositories
                 .Include(x => x.Flashcards)
                 .Where(x => x.UserId == userId && x.TextId == textId)
                 .Select(x => new DetailedDeck(x.Id, x.Title, x.TextId,
-                    x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord))))
+                    x.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord, y.EasinessFactor))))
                 .FirstOrDefaultAsync();
         }
     }

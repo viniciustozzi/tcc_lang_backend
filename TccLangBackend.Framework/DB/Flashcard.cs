@@ -17,5 +17,7 @@ namespace TccLangBackend.Framework.DB
         public Deck Deck { get; set; }
 
         public ICollection<FlashcardLog> FlashcardLogs { get; set; }
+        
+        public double EasinessFactor { get; set; }
     }
 }

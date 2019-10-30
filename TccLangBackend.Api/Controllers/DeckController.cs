@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -69,6 +70,12 @@ namespace TccLangBackend.Api.Controllers
         public Task CreateFlashcardLog(int deckId, int flashcardId, Difficulty difficulty)
         {
             return _flashcardsBusiness.CreateLogAsync(new CreateLog(flashcardId, difficulty, DateTime.Now));
+        }
+
+        [HttpGet("{deckId}/today")]
+        public Task<IEnumerable<ModelFlashcard>> GetTodayFlashcards(int deckId)
+        {
+            return _flashcardsBusiness.GetFlashcardToday(UserId, deckId);
         }
     }
 }

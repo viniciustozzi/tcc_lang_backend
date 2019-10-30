@@ -21,7 +21,7 @@ namespace TccLangBackend.Framework.DB.Repositories
             return _dbContext.Flashcards
                 .Include(x => x.Deck)
                 .Where(x => x.Deck.UserId == userId && x.DeckId == deckId)
-                .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord));
+                .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord, x.EasinessFactor));
         }
 
         public Task<ModelFlashcard> FindAsync(int userId, int deckId, int flashcardId)
@@ -29,7 +29,7 @@ namespace TccLangBackend.Framework.DB.Repositories
             return _dbContext.Flashcards
                 .Include(x => x.Deck)
                 .Where(x => x.Id == flashcardId && x.DeckId == deckId && x.Deck.UserId == userId)
-                .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord))
+                .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord, x.EasinessFactor))
                 .FirstOrDefaultAsync();
         }
 
@@ -39,14 +39,16 @@ namespace TccLangBackend.Framework.DB.Repositories
             {
                 DeckId = createFlashcard.DeckId,
                 OriginalWord = createFlashcard.OriginalWord,
-                TranslatedWord = createFlashcard.TranslatedWord
+                TranslatedWord = createFlashcard.TranslatedWord,
+                EasinessFactor = 2.5
             };
 
             _dbContext.Flashcards.Add(flashcard);
 
             await _dbContext.SaveChangesAsync();
 
-            return new ModelFlashcard(flashcard.Id, flashcard.OriginalWord, flashcard.TranslatedWord);
+            return new ModelFlashcard(flashcard.Id, flashcard.OriginalWord, flashcard.TranslatedWord,
+                flashcard.EasinessFactor);
         }
 
         public Task DeleteByOriginalWordAsync(int userId, int deckId, string originalWord)
@@ -66,6 +68,38 @@ namespace TccLangBackend.Framework.DB.Repositories
                 Difficulty = createLog.Difficulty
             });
 
+            return _dbContext.SaveChangesAsync();
+        }
+
+        public Task<ModelFlashcardLog> GetLastLogAsync(int flashcardId) =>
+            _dbContext.FlashcardLogs
+                .Where(x => x.FlashcardId == flashcardId)
+                .OrderByDescending(x => x.CreationDateTime)
+                .Select(x => new ModelFlashcardLog
+                {
+                    Difficulty = x.Difficulty,
+                    Id = x.Id,
+                    DateTime = x.CreationDateTime,
+                    FlashcardId = x.FlashcardId
+                })
+                .FirstOrDefaultAsync();
+
+        public Task<double> GetEasinessFactorByIdAsync(int flashcardId) =>
+            _dbContext.Flashcards
+                .Where(x => x.Id == flashcardId)
+                .Select(x => x.EasinessFactor)
+                .FirstOrDefaultAsync();
+
+        public Task UpdateFlashcardEfById(int flashcardId, double ef)
+        {
+            var flashcard = new Flashcard
+            {
+                Id = flashcardId,
+                EasinessFactor = ef
+            };
+
+            _dbContext.Flashcards.Attach(flashcard);
+            _dbContext.Entry(flashcard).Property(e => e.EasinessFactor).IsModified = true;
             return _dbContext.SaveChangesAsync();
         }
     }

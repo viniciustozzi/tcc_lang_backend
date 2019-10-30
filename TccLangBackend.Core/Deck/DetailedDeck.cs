@@ -17,5 +17,7 @@ namespace TccLangBackend.Core.Deck
         public string Title { get; }
         public int? TextId { get; }
         public IEnumerable<ModelFlashcard> Flashcards { get; }
+
+        public int FlashcardsToday { get; set; }
     }
 }

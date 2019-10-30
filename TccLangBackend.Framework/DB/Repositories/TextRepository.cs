@@ -45,7 +45,8 @@ namespace TccLangBackend.Framework.DB.Repositories
                 .ThenInclude(x => x.Flashcards)
                 .Select(x => new DetailedText(x.Id, x.Title, x.Words, x.Decks.Select(z => new DetailedDeck(z.Id,
                         z.Title, z.TextId,
-                        z.Flashcards.Select(y => new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord))))
+                        z.Flashcards.Select(y =>
+                            new ModelFlashcard(y.Id, y.OriginalWord, y.TranslatedWord, y.EasinessFactor))))
                     .First()))
                 .FirstOrDefaultAsync();
         }

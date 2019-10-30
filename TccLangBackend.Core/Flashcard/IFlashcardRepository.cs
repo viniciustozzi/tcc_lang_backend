@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -14,5 +15,8 @@ namespace TccLangBackend.Core.Flashcard
         Task DeleteByOriginalWordAsync(int userId, int deckId, string originalWord);
 
         Task CreateLogAsync(CreateLog createLog);
+        Task<ModelFlashcardLog> GetLastLogAsync(int flashcardId);
+        Task<double> GetEasinessFactorByIdAsync(int createLogFlashcardId);
+        Task UpdateFlashcardEfById(int flashcardId, double ef);
     }
 }
