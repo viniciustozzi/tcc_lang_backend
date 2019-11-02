@@ -16,9 +16,10 @@ namespace TccLangBackend.Core.Feed
         {
             Feeds = new List<FeedSource>
             {
-              //  new FeedSource("http://rss.dw.com/atom/rss-en-top", "en", FeedType.Atom),
-              //  new FeedSource("http://rss.dw.com/atom/rss-de-top", "de", FeedType.Atom),
-                new FeedSource("http://ep00.epimg.net/rss/elpais/portada.xml", "es", FeedType.Rss)
+                new FeedSource("http://rss.dw.com/atom/rss-en-top", "en", FeedType.Atom),
+                new FeedSource("http://rss.dw.com/atom/rss-de-top", "de", FeedType.Atom),
+                new FeedSource("http://ep00.epimg.net/rss/elpais/portada.xml", "es", FeedType.Rss),
+                new FeedSource("http://g1.globo.com/dynamo/rss2.xml", "pt", FeedType.Rss)
             };
         }
 

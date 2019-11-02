@@ -71,7 +71,19 @@ namespace TccLangBackend.Core.Flashcard
 
         private double CalcEF(double ef, Difficulty difficulty)
         {
-            var newEf = ef * (int) difficulty;
+            double newEf = 0;
+            switch (difficulty)
+            {
+                case Difficulty.Easy:
+                    newEf = ef + (ef * 0.15);
+                    break;
+                case Difficulty.Medium:
+                    newEf = ef;
+                    break;
+                case Difficulty.Hard:
+                    newEf = ef - (ef * 0.15);
+                    break;
+            }
 
             if (newEf < 1.3)
                 newEf = 1.3;
