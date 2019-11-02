@@ -8,7 +8,7 @@ namespace TccLangBackend.Core.Flashcard
     {
         IEnumerable<ModelFlashcard> GetAll(int userId, int deckId);
 
-        Task<ModelFlashcard> FindAsync(int userId, int deckId, int flashcardId);
+        Task<ModelFlashcard> FindAsync(int flashcardId);
 
         Task<ModelFlashcard> CreateAsync(CreateFlashcard createFlashcard);
 
@@ -17,6 +17,6 @@ namespace TccLangBackend.Core.Flashcard
         Task CreateLogAsync(CreateLog createLog);
         Task<ModelFlashcardLog> GetLastLogAsync(int flashcardId);
         Task<double> GetEasinessFactorByIdAsync(int createLogFlashcardId);
-        Task UpdateFlashcardEfById(int flashcardId, double ef);
+        Task UpdateFlashcardById(int flashcardId, double ef, int days);
     }
 }

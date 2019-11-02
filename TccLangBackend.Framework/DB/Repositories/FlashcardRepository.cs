@@ -21,15 +21,16 @@ namespace TccLangBackend.Framework.DB.Repositories
             return _dbContext.Flashcards
                 .Include(x => x.Deck)
                 .Where(x => x.Deck.UserId == userId && x.DeckId == deckId)
-                .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord, x.EasinessFactor));
+                .Select(x =>
+                    new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord, x.EasinessFactor, x.PreviousDays));
         }
 
-        public Task<ModelFlashcard> FindAsync(int userId, int deckId, int flashcardId)
+        public Task<ModelFlashcard> FindAsync(int flashcardId)
         {
             return _dbContext.Flashcards
                 .Include(x => x.Deck)
-                .Where(x => x.Id == flashcardId && x.DeckId == deckId && x.Deck.UserId == userId)
-                .Select(x => new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord, x.EasinessFactor))
+                .Select(x =>
+                    new ModelFlashcard(x.Id, x.OriginalWord, x.TranslatedWord, x.EasinessFactor, x.PreviousDays))
                 .FirstOrDefaultAsync();
         }
 
@@ -40,7 +41,8 @@ namespace TccLangBackend.Framework.DB.Repositories
                 DeckId = createFlashcard.DeckId,
                 OriginalWord = createFlashcard.OriginalWord,
                 TranslatedWord = createFlashcard.TranslatedWord,
-                EasinessFactor = 2.5
+                EasinessFactor = 2.5,
+                PreviousDays = 1
             };
 
             _dbContext.Flashcards.Add(flashcard);
@@ -48,7 +50,7 @@ namespace TccLangBackend.Framework.DB.Repositories
             await _dbContext.SaveChangesAsync();
 
             return new ModelFlashcard(flashcard.Id, flashcard.OriginalWord, flashcard.TranslatedWord,
-                flashcard.EasinessFactor);
+                flashcard.EasinessFactor, flashcard.PreviousDays);
         }
 
         public Task DeleteByOriginalWordAsync(int userId, int deckId, string originalWord)
@@ -90,12 +92,18 @@ namespace TccLangBackend.Framework.DB.Repositories
                 .Select(x => x.EasinessFactor)
                 .FirstOrDefaultAsync();
 
-        public Task UpdateFlashcardEfById(int flashcardId, double ef)
+        public Task UpdateFlashcardById(int flashcardId, double ef)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task UpdateFlashcardById(int flashcardId, double ef, int days)
         {
             var flashcard = new Flashcard
             {
                 Id = flashcardId,
-                EasinessFactor = ef
+                EasinessFactor = ef,
+                PreviousDays = days
             };
 
             _dbContext.Flashcards.Attach(flashcard);

@@ -20,7 +20,7 @@ namespace TccLangBackend.Core.Flashcard
 
         public Task<ModelFlashcard> GetFlashcard(int userId, int deckId, int flashcardId)
         {
-            return _flashcardRepository.FindAsync(userId, deckId, flashcardId);
+            return _flashcardRepository.FindAsync(flashcardId);
         }
 
         public Task<ModelFlashcard> Create(CreateFlashcard createFlashcard)
@@ -30,11 +30,12 @@ namespace TccLangBackend.Core.Flashcard
 
         public async Task CreateLogAsync(CreateLog createLog)
         {
-            var previousEf = await _flashcardRepository.GetEasinessFactorByIdAsync(createLog.FlashcardId);
+            var flashcard = await _flashcardRepository.FindAsync(createLog.FlashcardId);
 
-            var ef = CalcEF(previousEf, createLog.Difficulty);
+            var ef = CalcEf(flashcard.EasinessFactor, createLog.Difficulty);
+            var days = (int) Math.Floor(flashcard.PreviousDays * ef);
 
-            await _flashcardRepository.UpdateFlashcardEfById(createLog.FlashcardId, ef);
+            await _flashcardRepository.UpdateFlashcardById(createLog.FlashcardId, ef, days);
 
             await _flashcardRepository.CreateLogAsync(createLog);
         }
@@ -48,7 +49,7 @@ namespace TccLangBackend.Core.Flashcard
         {
             var flashcards = _flashcardRepository.GetAll(userId, deckId);
 
-            var oldList = new List<ModelFlashcard>();
+            var todayList = new List<ModelFlashcard>();
 
             foreach (var flashcard in flashcards)
             {
@@ -56,20 +57,19 @@ namespace TccLangBackend.Core.Flashcard
 
                 if (modelFlashcardLog != null)
                 {
-                    var days = (DateTime.Now - modelFlashcardLog.DateTime).TotalDays;
-                    var result = days * CalcEF(flashcard.EasinessFactor, modelFlashcardLog.Difficulty);
+                    var diffDays = (DateTime.Now - modelFlashcardLog.DateTime).TotalDays;
 
-                    if (result > days)
-                        oldList.Add(flashcard);
+                    if (diffDays >= flashcard.PreviousDays)
+                        todayList.Add(flashcard);
                 }
                 else
-                    oldList.Add(flashcard);
+                    todayList.Add(flashcard);
             }
 
-            return oldList;
+            return todayList;
         }
 
-        private double CalcEF(double ef, Difficulty difficulty)
+        private double CalcEf(double ef, Difficulty difficulty)
         {
             double newEf = 0;
             switch (difficulty)
